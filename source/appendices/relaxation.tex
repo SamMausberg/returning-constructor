@@ -1,0 +1,71 @@
+\section{Finite-block relaxation and the two limits}\label{app:relaxation}
+
+\begin{lemma}[Exact finite-block relaxation]\label{lem:relaxation}
+For every finite $k$, qubit state $b$, and $0<\eta\le\pi/2$,
+\begin{equation}
+ \Phi_{b,k}^{\,L}(X)\longrightarrow b^{\otimes k}\Tr X
+ \label{eq:relaxation}
+\end{equation}
+uniformly on bounded sets of operators. In particular, convergence is uniform over density matrices.
+\end{lemma}
+\begin{proof}
+First take $b=p$ and $0<\eta<\pi/2$. The travelling ancilla starts in $\ket0$. Put $c=\cos\eta$ and define $K_0=\bra0W\ket0$, $K_1=\bra1W\ket0$. Total excitation is conserved. The first Kraus operator preserves excitation number; the second lowers it by one.
+
+Within a fixed excitation sector, order computational basis strings by the sum of their occupied positions, breaking ties arbitrarily. An ancilla can pick up an excitation only at the cell it is currently visiting and can deposit it only at a later cell. Every nontrivial transfer in $K_0$ therefore increases the sum of occupied positions. Its diagonal entry on an $r$-excitation string is $c^r e^{i\eta(k-r)}$: a zero cell contributes $e^{i\eta}$ and an occupied cell contributes $c$ to the no-transfer path. No other path returns that same string.
+
+On matrix units $\ket x\bra y$, order sectors by decreasing total ket-plus-bra excitation number and then by increasing occupied-position sums. The $K_0$ term is triangular within each sector; the $K_1$ term goes to a later sector. The diagonal eigenvalues of the channel are products of the corresponding $K_0$ diagonal entries and their conjugates. Their moduli are $c^{r+t}$. The vacuum matrix unit is the only one with modulus one, and its diagonal entry is one. Thus the eigenvalue one has algebraic multiplicity one. Every other eigenvalue has modulus less than one, so its Jordan contribution decays. The fixed vacuum and trace preservation identify the limit as $X\mapsto p^{\otimes k}\Tr X$. At $\eta=\pi/2$, each sweep shifts the block and inserts a zero; $k$ sweeps replace it exactly.
+
+For a general mixed $b$, choose an eigenprojector $p'$ with eigenvalue $\lambda>0$ and write $b=\lambda p'+(1-\lambda)b'$. Collective unitary covariance transports the pure-state proof to $p'$. On the Hermitian trace-zero subspace, a sufficiently large power $\Phi_{p',k}^{\,L}$ has induced trace norm $\alpha<1$. This follows from its spectral convergence to zero and equivalence of norms in finite dimension.
+
+The channel depends linearly on its fresh state. Expanding $\Phi_{b,k}^{\,L}$ gives the all-$p'$ branch with coefficient $\lambda^L$, and a convex combination of other channel compositions. Each other composition contracts trace norm on Hermitian operators. The resulting contraction coefficient on the trace-zero subspace is at most $1-\lambda^L(1-\alpha)<1$. The state $b^{\otimes k}$ is fixed because every gate preserves a product of identical states. It is therefore the unique attractor. Complex operators follow by separating Hermitian and anti-Hermitian parts.
+\end{proof}
+
+The proof applies to correlated initial blocks and accommodates nonnormal channel matrices through their Jordan decomposition.
+
+
+For qubit states $a,b$, let $f=F(a,b)$ and define the current-error ratio
+\begin{equation}
+ R_{M,n}=\frac{1-F(\rho_{M,n},b)}{F(\sigma_{M,n},b^{\otimes M})}.
+ \label{eq:ratiodef}
+\end{equation}
+The two single-parameter limits are
+\begin{align}
+ \lim_{M\to\infty}R_{M,n}&=0 &&(n\text{ fixed}),\nonumber\\
+ \lim_{n\to\infty}R_{M,n}&=(1-f)f^{-M} &&(M\text{ fixed}).
+ \label{eq:limitsmain}
+\end{align}
+\begin{theorem}[Exact iterated limits]\label{thm:limits}
+Let $0<F(a,b)=f<1$ and fix $0<\eta\le\pi/2$. Then the ratio in~\eqref{eq:ratiodef} obeys~\eqref{eq:limitsmain}, and
+\begin{equation}
+ \lim_{n\to\infty}\lim_{M\to\infty}R_{M,n}=0,
+ \qquad
+ \lim_{M\to\infty}\lim_{n\to\infty}R_{M,n}=+\infty.
+ \label{eq:iterated}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Compare $a^{\otimes n}\otimes b^{\otimes M}$ with $b^{\otimes(n+M)}$. The latter is invariant under the entire grid, while their initial fidelity is $f^n$. Fidelity cannot decrease under partial trace, so the reservoir fidelity is at least $f^n$. At fixed $n$,~\eqref{eq:column} and~\cref{lem:relaxation} give $\Omega_{M,n}\to b^{\otimes n}$; the numerator consequently tends to zero above a positive denominator floor. At fixed $M$, the same lemma gives $\sigma_{M,n}\to a^{\otimes M}$. The next fresh input and this limiting reservoir have state $a^{\otimes(M+1)}$, which every partial swap fixes, so the current output tends to $a$. The limiting denominator is $f^M$ and numerator $1-f$.
+
+For nonexistence of a joint limit, at $n=k$ choose $M_k\ge k$ large enough to make $R_{M_k,k}<1/k$. Conversely, at $M=k$ choose $n_k\ge k$ so that $R_{k,n_k}$ is at least half its fixed-$M$ limit. The two sequences tend respectively to zero and infinity. The same argument applies after exchanging $a$ and $b$, since fidelity is symmetric.
+\end{proof}
+
+There is also a finite, computable, though not generally sharp size certificate. Let $A$ be the superoperator matrix of $\Phi_{b,n}$ in a Hilbert--Schmidt orthonormal basis and let $B$ represent $X\mapsto b^{\otimes n}\Tr X$. Set $d=2^n$. If an integer $L$ satisfies $\kappa=\sqrt d\norm{A^L-B}_F<1$, then
+\begin{equation}
+ T(\Phi_{b,n}^{\,M}(X),b^{\otimes n})\le\kappa^{\lfloor M/L\rfloor}
+\end{equation}
+for states $X$. Indeed, on a trace-zero Hermitian difference, trace norm is at most $\sqrt d$ times Hilbert--Schmidt norm, and Hilbert--Schmidt norm is at most trace norm. Powers in blocks of $L$ contract, and the remaining channel steps cannot increase the distance. Such an $L$ exists by~\cref{lem:relaxation}. A floating-point estimate of $\kappa$ is not an interval-certified inequality.
+
+
+For the running pair $p,\tau$, the fixed-$M$ limit is $2^{M-1}$. For orthogonal pure endpoints and a strict partial swap, the one-use numerator and denominator both equal $\cos^{2M}\eta$, so the ratio is one. At full swap both vanish and that ratio is undefined. The hypothesis $0<f<1$ in \cref{thm:limits} avoids this boundary.
+
+\subsection{Coupling paths and a restricted scalar}
+Both directions admit a common weak-coupling path with vanishing current-error ratio. At horizon $k$, set $\eta=k^{-2}$ and choose a common finite $M\ge k$ large enough that both joint output errors are at most $2^{-3k}$. The relaxation lemma guarantees such a choice. The reservoir-fidelity floor $2^{-k}$ and $1-F\le2T$ give $R_{M,k}\le2^{1-2k}$ in both directions. A unitary telescope bounds the change of each individual reservoir cell by $k\eta=1/k$. This statement concerns cell marginals.
+
+If the first-use ratio is evaluated only at the designated initializer, its exact long-use reservoir fidelity is $2^{-M}$ in both directions. The corresponding fixed-$M$ limits are
+\begin{align}
+ 2^M\frac{1-\sqrt{1-q^{2M}}}{2}
+ &\sim\frac{(2q^2)^M}{4},\nonumber\\
+ 2^M\frac{q^M}{2}&=\frac{(2q)^M}{2}.
+ \label{eq:restrictedscalar}
+\end{align}
+For $1/2<q<1/\sqrt2$, the two expressions tend to zero and infinity, respectively. Meanwhile the current output tends to its incoming state in both directions. In the weak-coupling regime $q\to1$, both expressions diverge. This separates the restricted scalar from an output-accuracy requirement.

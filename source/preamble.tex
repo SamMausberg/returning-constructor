@@ -1,0 +1,43 @@
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm,bm,mathtools}
+\usepackage{graphicx,booktabs,microtype}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathreplacing}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\repolink}{\href{https://github.com/SamMausberg/returning-constructor}{\nolinkurl{github.com/SamMausberg/returning-constructor}}}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\newtheorem{theorem}{Theorem}
+\usepackage{aliascnt}
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+\crefname{lemma}{Lemma}{Lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{proposition}{Proposition}{Propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{corollary}{Corollary}{Corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+% APS style capitalizes numbered references mid-sentence.
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{table}{Table}{Tables}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle#1|}
+\newcommand{\SW}{\mathsf S}
+\newcommand{\ha}{h_2}
+\newcommand{\Pone}{\mathcal P_1}
+\newcommand{\positive}[1]{\left[#1\right]_+}
+\DeclareMathOperator{\Bin}{Bin}
+\setlength{\emergencystretch}{1em}
+\newcommand{\statement}[1]{\input{statements/#1.tex}}

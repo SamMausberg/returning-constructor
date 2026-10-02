@@ -1,0 +1,192 @@
+[
+  {
+    "path": "source/appendices/verification.tex",
+    "status": "changed",
+    "sha256": "cea44396eeaf09a19dfbd52bec501153e29cbfd2c48284248802e6657b881b08"
+  },
+  {
+    "path": "source/briefing.tex",
+    "status": "added",
+    "sha256": "0faaa07cef1b8b97d2eef938acc84a3dfb244eebfae44979908f506d16306982"
+  },
+  {
+    "path": "source/comment.tex",
+    "status": "changed",
+    "sha256": "90aa076b72756fa7fb420f990197ded9d4433b3f49d9f5f0819d7c1737cab9d9"
+  },
+  {
+    "path": "source/figures/comment_ratio.pdf",
+    "status": "added",
+    "sha256": "4bda04ab19da424bcdedeef00b8292e7daa160b4c08b71dadbdf9399d24175f4"
+  },
+  {
+    "path": "source/figures/comment_ratio.png",
+    "status": "added",
+    "sha256": "2b605529cc5b4992c6b01b1ec96cc4ebdf6bc9dc06acbde7540e55bc5ad86c17"
+  },
+  {
+    "path": "source/figures/cost_horizon.pdf",
+    "status": "added",
+    "sha256": "6e1afefda91a6f087b9a4531d74c9d140d7d4e720d92cd58648f7733551837d3"
+  },
+  {
+    "path": "source/figures/cost_horizon.png",
+    "status": "added",
+    "sha256": "e2a9db474ab849741d2fc295b2ab424f4c82485cc552a13f3f14f4fcdae1e48a"
+  },
+  {
+    "path": "source/figures/cost_tolerance.pdf",
+    "status": "added",
+    "sha256": "2011df862510baf47fe1a4d62c8027e75f68521624f11089d46c5accf14aa4a3"
+  },
+  {
+    "path": "source/figures/cost_tolerance.png",
+    "status": "added",
+    "sha256": "ae620b3cade9e864b7dcf44ddf0580adffc46c37caee8fee003d9742a6cc0252"
+  },
+  {
+    "path": "source/figures/fairbit.tikz",
+    "status": "changed",
+    "sha256": "e476305f00dffcb26346b4e4a75f27cb22b23543a3bada91f49744f588e2fb12"
+  },
+  {
+    "path": "source/figures/grid.tikz",
+    "status": "changed",
+    "sha256": "60ab17f1c556d6c42e82bbd1fccd80f2a81b4a5e16fc77d76681cee7bb91b143"
+  },
+  {
+    "path": "source/figures/ratio_reservoir.pdf",
+    "status": "added",
+    "sha256": "1c334393e19f5ca7c4ba4c470eafb0c6d1062b26a7e5925d4d7397b48ac09ebe"
+  },
+  {
+    "path": "source/figures/ratio_reservoir.png",
+    "status": "added",
+    "sha256": "312280ad3e77184ed2b9eb88d2fe50f1a630f6b05a4bbca72c1c76a5b75484d1"
+  },
+  {
+    "path": "source/figures/ratio_uses.pdf",
+    "status": "added",
+    "sha256": "8909d16eb2d579da435d0457a2c3c8b3e5acff3ed6360fed3798c4dcd4aa83ee"
+  },
+  {
+    "path": "source/figures/ratio_uses.png",
+    "status": "added",
+    "sha256": "228d77c601e8d253f970bbf388d5169f17ad8a9c4a4cb7f7380681d551dfa1dd"
+  },
+  {
+    "path": "source/figures/shift.tikz",
+    "status": "changed",
+    "sha256": "5ffcb5b1314a75303a875640dd3a69333ba5c370a93f025d6d650f89cd399467"
+  },
+  {
+    "path": "source/figures/singlet_data.pdf",
+    "status": "added",
+    "sha256": "6647488a3ba103a8b28b751b7146e2929397f9b640c5a37a29874944ce60af90"
+  },
+  {
+    "path": "source/figures/singlet_data.png",
+    "status": "added",
+    "sha256": "5b173629bed23636b8f0c2d63127fa880280327a8e100e6f74f46f713ad8d274"
+  },
+  {
+    "path": "source/paper.tex",
+    "status": "changed",
+    "sha256": "0d81aa1ef0ddfd33d328e7442c70833da6c77e27948ab99b49337f827bfa1939"
+  },
+  {
+    "path": "source/preamble.tex",
+    "status": "changed",
+    "sha256": "94e85e86a6bcf3b7db2f47d5de434abcb9b036d9936a4c7140b1bd9075c84962"
+  },
+  {
+    "path": "code/certified_figures.py",
+    "status": "added",
+    "sha256": "53ab1662ffb423653e9683ce1e436938d6f072757c8309ead19541e9bcb11fa1"
+  },
+  {
+    "path": "code/editorial_audit.py",
+    "status": "added",
+    "sha256": "4714ef7101e02a83fc575505be5d0e141b22f8403cc972038ec55b37f5a4e422"
+  },
+  {
+    "path": "code/make_plots.py",
+    "status": "added",
+    "sha256": "03eb30b37d4fa4c184c02b007af62e05b6c29431c0bcc7b219bf8481e1ba72c9"
+  },
+  {
+    "path": "data/cost_horizon.csv",
+    "status": "added",
+    "sha256": "c362d08c717fce8425e9f050a22ed25d95c62f0bbac789150232b7f1ae326371"
+  },
+  {
+    "path": "data/cost_horizon.json",
+    "status": "added",
+    "sha256": "68245e755488113948081bee7b629878d03b94886843f445b6f5b6476cd43256"
+  },
+  {
+    "path": "data/cost_tolerance.csv",
+    "status": "added",
+    "sha256": "1931fa99564e1ce98ce88989ccff6f835bed3d482367dc034fb4b4db36c2ba15"
+  },
+  {
+    "path": "data/cost_tolerance.json",
+    "status": "added",
+    "sha256": "d610eabc721d9cbd5219f785f19b5e9d35b4f9c94d62dfddaba19dd28e19b693"
+  },
+  {
+    "path": "data/ratio_reservoir.csv",
+    "status": "added",
+    "sha256": "4692ff7ede3db0989c3ffd473e907613572680e8ee498515214b596b06ea519e"
+  },
+  {
+    "path": "data/ratio_reservoir.json",
+    "status": "added",
+    "sha256": "6f503cd347ab5a1c1863362ae22fa552443519c43c359b90188287dd2013a22e"
+  },
+  {
+    "path": "data/ratio_uses.csv",
+    "status": "added",
+    "sha256": "2d794b7908dce593df42e49b37af40b8937acdf77e8676145320ba5728fbcc64"
+  },
+  {
+    "path": "data/ratio_uses.json",
+    "status": "added",
+    "sha256": "478ec4b30f949c7ba99a3095301b3523a04ed9bb76b31dd9c8e075669598c1ad"
+  },
+  {
+    "path": "data/singlet.csv",
+    "status": "added",
+    "sha256": "88f336a8b583d5a796ebe6030f7a056cc5d92a4ad1a0e0c755cb50a970004cb9"
+  },
+  {
+    "path": "data/singlet.json",
+    "status": "added",
+    "sha256": "9f8b8d0c4478b7cc71b393fe2ac4cfd7e4255c17ff93b88ad65178e5d6d46095"
+  },
+  {
+    "path": "README.md",
+    "status": "changed",
+    "sha256": "bc03d99a60b3b66917cf3e762bf391394d867853546183b1c2f725546798313b"
+  },
+  {
+    "path": "EDITORIAL_RECORD.md",
+    "status": "added",
+    "sha256": "aa380bfa571231099c05a08af39899129875e045ce2f171daec0bcd4775e38c8"
+  },
+  {
+    "path": "MATHEMATICAL_FLAGS.md",
+    "status": "added",
+    "sha256": "8059e2ac17105e05d1b660235743a39e1dea11a7bd166817adc33add1eb2b229"
+  },
+  {
+    "path": "build.sh",
+    "status": "changed",
+    "sha256": "c57435675784edf170617c147ea429cc74bef7515d505f8e2e72146e7d0a8596"
+  },
+  {
+    "path": "requirements.txt",
+    "status": "changed",
+    "sha256": "d933d5c87bd128840f3354300c097eedff901ff42e50216b0d21d891028e5a3c"
+  }
+]

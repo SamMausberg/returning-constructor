@@ -1,0 +1,17 @@
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\footnotesize,line width=.6pt]
+\node[anchor=east] at (.52,0) {$\sigma_0$};
+\draw[fill=white] (.7,-.30) rectangle (2.4,.30);
+\draw[fill=black!7] (2.4,-.30) rectangle (7.4,.30);
+\node at (1.55,0) {$0^n$};
+\node at (4.9,0) {dyadic tail};
+\draw[->] (4.05,-.5)--(4.05,-1.1);
+\node[anchor=west] at (4.2,-.8) {$t$ cyclic swaps};
+\node[anchor=east] at (.52,-1.6) {$\sigma_t$};
+\draw[fill=white] (.7,-1.9) rectangle (2.2,-1.3);
+\draw[fill=black!7] (2.2,-1.9) rectangle (5.8,-1.3);
+\draw[fill=black!17] (5.8,-1.9) rectangle (7.4,-1.3);
+\node at (1.45,-1.6) {$0^{n-t}$};
+\node at (4,-1.6) {dyadic tail};
+\node at (6.6,-1.6) {$\tau^{\otimes t}$};
+\node at (4.05,-2.35) {$t$ pure outputs released; $m$ memory qubits retained};
+\end{tikzpicture}

@@ -1,0 +1,16 @@
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,font=\footnotesize,line width=.6pt]
+\draw[fill=black!7,draw=none] (.62,.22) rectangle (7.4,-.22);
+\foreach \y/\label in {0/{R:\tau},-.6/{S_1:p},-1.2/{S_2:p},-1.8/{S_3:p}}{
+ \draw (.7,\y)--(7.3,\y);
+ \node[anchor=east] at (.55,\y) {$\label$};
+ \node[anchor=west] at (7.4,\y) {$\tau$};
+}
+\foreach \x/\y in {2/-.6,4/-1.2,6/-1.8}{
+ \fill (\x,0) circle(1.8pt);
+ \draw (\x,0)--(\x,\y);
+ \draw[fill=white] (\x,\y) circle(.10);
+ \draw (\x-.1,\y)--(\x+.1,\y);
+ \draw (\x,\y-.1)--(\x,\y+.1);
+}
+\node at (4,-2.34) {Outputs: $000$ or $111$, each with probability $1/2$};
+\end{tikzpicture}

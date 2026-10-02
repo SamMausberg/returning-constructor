@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use or build on this work, please cite it as below."
+type: software
+license:
+  - MIT
+  - CC-BY-4.0
+title: "Memory return in quantum machines: sources, computational checks, and Lean formalisation"
+authors:
+  - given-names: Samuel
+    family-names: Mausberg
+    affiliation: Independent researcher
+abstract: >-
+  Manuscript sources, full proofs, computational checks, and a Lean 4
+  formalisation accompanying "Memory return in quantum machines", which asks
+  whether a quantum machine can repeatedly transform fresh inputs while
+  returning its memory to its initial state.
+keywords:
+  - quantum thermodynamics
+  - quantum homogenizer
+  - constructor theory
+  - memory return
+  - Lean 4
+preferred-citation:
+  type: unpublished
+  title: "Memory return in quantum machines"
+  authors:
+    - given-names: Samuel
+      family-names: Mausberg
+      affiliation: Independent researcher
+  year: 2026
+  notes: "Manuscript"

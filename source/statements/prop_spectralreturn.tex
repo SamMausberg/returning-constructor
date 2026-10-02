@@ -1,0 +1,14 @@
+\begin{proposition}[Spectral endpoint converse]\label{prop:spectralreturn}
+Any closed $m$-qubit memory that exactly purifies $n$ maximally mixed inputs and returns within $\delta>0$ satisfies
+\begin{equation}
+ \delta\ge\frac1{\lceil m/n\rceil+1/(2^n-1)}.
+ \label{eq:spectralreturn}
+\end{equation}
+Consequently, for the prefix-return optimum,
+\begin{equation}
+ m_-^{\rm ret}(n,0,\delta)\ge
+ n\left(\left\lceil\frac1\delta-\frac1{2^n-1}\right\rceil-1\right)+1.
+ \label{eq:spectralmemory}
+\end{equation}
+Together with~\eqref{eq:erasurecost}, this proves $m_-^{\rm ret}(n,0,\delta)=n/\delta+O(n)$ with constants uniform for $0<\delta\le1/4$. Within this tolerance range, for $n=1$ the exact optimum is $\lceil1/\delta\rceil-1$.
+\end{proposition}

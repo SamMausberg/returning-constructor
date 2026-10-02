@@ -1,0 +1,19 @@
+\begin{tikzpicture}[x=.72cm,y=.72cm,font=\footnotesize,line width=.6pt]
+\foreach \offset/\head in {0/{Row order},6/{Column order}}{
+ \node at (\offset+2,1.15) {\head};
+ \foreach \j in {1,2,3}{\node at (\offset+\j,.48) {$R_{\j}$};}
+ \foreach \i in {1,2,3}{
+  \node[anchor=east] at (\offset+.42,-\i+.35) {$S_{\i}$};
+  \foreach \j in {1,2,3}{
+   \draw[fill=black!7] (\offset+\j-.34,-\i+.01) rectangle (\offset+\j+.34,-\i+.69);
+   \ifnum\offset=0
+    \pgfmathtruncatemacro{\num}{3*(\i-1)+\j}
+   \else
+    \pgfmathtruncatemacro{\num}{3*(\j-1)+\i}
+   \fi
+   \node at (\offset+\j,-\i+.35) {\num};
+  }
+ }
+}
+\node at (4.85,-1.65) {$=$};
+\end{tikzpicture}

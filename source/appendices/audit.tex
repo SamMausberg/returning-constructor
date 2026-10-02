@@ -1,0 +1,29 @@
+\section{Version-specific source audit}\label{app:audit}
+
+We distinguish the definitions below because they give different quantities even for the same circuit. The locators refer to the named arXiv versions and the publisher's supplement. The source comparison was carried out during preparation of the research draft.
+
+\subsection{The Letter and its two preprints}
+
+The first preprint, arXiv:2009.14649v1~\cite{prlv1}, has the title \emph{Irreversibility in unitary quantum homogenisation: Theory and Experiment}. On p.~2 it takes a supremum of return fidelity over first-use-capable states and divides the first-use tolerance by that quantity. Its general displayed limit has one limit sign with two variables. The specific homogenizer statements on p.~3 take the number of uses first. The embedded supplementary discussion is on pp.~7--8.
+
+Version 2 and the published Letter~\cite{prl} instead use the infimum in Eq.~\eqref{eq:infimum}. Their Eqs.~(3)--(7) define squared Uhlmann fidelity, a fixed first-use numerator, and an infimum over the first-use capability set. Equation~(7) takes the number of uses to infinity before the accuracy limit. Equations~(12)--(13) instantiate this as reservoir size after uses. The product counterexample in \cref{prop:capable} applies to this definition.
+
+The publisher's file \texttt{Agents\_suppl\_mat\_v2.pdf}~\cite{supp}, Eqs.~(9)--(10), substitutes fidelity for the designated initializer and then assumes $S(n)\approx S(1)^n$. Equations~(17)--(25) use weak swaps and a product-reservoir approximation. Those approximations would need uniform control in the number of visits to justify the uses-first limit. The exact restricted-initializer calculation is Eq.~\eqref{eq:restrictedscalar}.
+
+\subsection{Later formulations}
+
+Violaris and Marletto, arXiv:2205.11310v1~\cite{vm}, Eqs.~(8)--(10), use current-output infidelity divided by whole-reservoir fidelity. Equation~(11) writes a joint $n,M\to\infty$ limit without fixing its order or path. Equations~(12)--(13) introduce the product-reservoir approximation. Section~1.2 develops nested capability sets, and Sec.~2.3 treats finite-horizon resource costs. The published New Journal of Physics version~\cite{vm} has a different title and keeps Eqs.~(8)--(13), but its Eq.~(11) is the iterated limit $\lim_{n\to\infty}\lim_{M\to\infty}$, taking reservoir size first; its Secs.~2.1 and~3.3 correspond to Secs.~1.2 and~2.3 above.
+
+Violaris's thesis, arXiv:2505.22834v1~\cite{thesis}, Eqs.~(5.1)--(5.6), also uses the current-error ratio. Equation~(5.4) takes reservoir size first: $\lim_n\lim_M$. The product approximation is introduced separately. Section~5.4.3 discusses the possible effect of omitted correlations. Section~3.3 distinguishes an unchanged state from retained ability.
+
+Beever and collaborators, arXiv:2309.15741v3~\cite{beever}, impose finite-horizon conditions on output marginals and on individual reservoir-cell marginals. Their Bloch-vector distance is $2T$ in our convention. This cellwise condition allows correlations among reservoir cells. Their incoherent model has control qubits, which form part of the accessible memory in a closed-device comparison.
+
+\emph{Tests of constructor theory}, arXiv:2606.07352v1~\cite{tests}, Sec.~3.2, reviews the proposed asymmetry and its experimental interpretation. It introduces no replacement limit theorem that reconciles the preceding definitions.
+
+\subsection{Constructor attributes and collision-model precedents}
+
+Deutsch's original paper~\cite{deutsch}, Secs.~1.1 and 3.14, describes retention of the ability to perform the task while allowing changes in other attributes. The introductory definitions in the information paper~\cite{information} treat attributes as sets of states. The thermodynamics paper~\cite{thermo} permits microscopic changes within a constructor attribute. These passages underlie the capability-set discussion in Sec.~\ref{sec:ability}; none specifies Eq.~\eqref{eq:return} as the universal quantitative definition.
+
+The circuit exchange used here is given by Giovannetti and Palma in Ref.~\cite{gp}, Eqs.~(4)--(7), and Ref.~\cite{cascade}, Eqs.~(5)--(8). The original homogenizer and thermalizing-machine papers~\cite{ziman,scarani} supply the partial-swap mechanism and the role of correlations. The proofs in this paper retain the full repeated circuit.
+
+For the forward memory bound, the relevant part of Boes and collaborators~\cite{boes} is Lemma~1 and Sec.~III.A. Their erratum~\cite{boeserratum} concerns the expander-convergence result. The dephasing lemma used in the resource comparison is unaffected. The counted streaming construction in Ref.~\cite{douglas} is Proposition~7.2. For the reverse spectrum, Ref.~\cite{ng}, Eqs.~(2)--(3), gives the trivial-Hamiltonian endpoint catalyst. These are the specific prior mechanisms used in Sec.~\ref{sec:general}.

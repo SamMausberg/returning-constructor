@@ -1,0 +1,15 @@
+\begin{theorem}[Prefix-controlled erasure]\label{thm:dyadic}
+Let $n\ge1$, $m\ge2n$, and $k=m-n$. There is an $m$-qubit initializer and one fixed cyclic-swap unitary whose first $n$ outputs are exactly $p^{\otimes n}$ and for which
+\begin{equation}
+ T(\sigma_t,\sigma_0)=\frac{t}{m-n+2},\qquad 1\le t\le n.
+ \label{eq:dyadicreturn}
+\end{equation}
+In particular, for $0<\delta\le1/4$,
+\begin{equation}
+ \frac{n-\ha(\delta)}{\delta}
+ \le m_-^{\rm ret}(n,0,\delta)
+ \le \left\lceil\frac n\delta\right\rceil+n-2.
+ \label{eq:erasurecost}
+\end{equation}
+Both marginal and joint output requirements have this exact-output cost bound.
+\end{theorem}

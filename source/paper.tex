@@ -1,0 +1,407 @@
+\documentclass[aps,pra,reprint,superscriptaddress,longbibliography,nofootinbib,floatfix]{revtex4-2}
+\input{preamble.tex}
+\usepackage{capt-of}
+\hypersetup{pdftitle={Memory return in quantum machines},pdfauthor={Samuel Mausberg},pdfsubject={Closed quantum memories and repeated homogenization}}
+% Natural spacing at column ends instead of stretched display and float gaps.
+\raggedbottom
+\begin{document}
+\title{Memory return in quantum machines}
+\author{Samuel Mausberg}
+\affiliation{Independent researcher}
+\email{samuelmausberg@gmail.com}
+\date{October 2, 2026}
+\begin{abstract}
+We ask whether a quantum machine can repeatedly transform fresh inputs while returning its memory to its initial state. We obtain three results. First, exact memory return prevents a closed machine from purifying maximally mixed inputs, for every initial memory state. With return tolerance $\delta$, exact purification of $n$ qubits requires $n/\delta+O(n)$ memory qubits; independent randomization requires only $\lceil n/2\rceil$ and allows exact return. Second, one use of the coherent quantum homogenizer requires a reservoir of size $\Theta(\log^2(1/\epsilon)/\delta^2)$ for output error $\epsilon$ and return error $\delta$. Accurate repeated output marginals can coexist with small return error, but two-output correlations impose $\epsilon+\delta/2\ge1/4$ when independent outputs and return after every use are required. Third, the exact repeated dynamics give identical iterated deterioration limits in both directions, while a forward-capable product initializer makes the published first-use capability infimum tend to zero. These results separate the return of a memory's reduced state from its ability to supply fresh independent randomness.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+
+Can a machine repeatedly change the state of a quantum system and still return to its starting condition? The answer depends on what we ask the machine to preserve. A memory may recover its reduced state while becoming correlated with the systems it has released. Such correlations matter as soon as we try to use those systems together.
+
+Consider a machine holding one fair classical bit. Each incoming bit is zero. The machine copies its stored bit onto the input and releases the result, leaving its memory unchanged. Every output is fair, however many inputs arrive. Yet the entire output string is either all zeros or all ones. After seeing the first output, we can predict all the others. This repeatable randomizer, a special case of the random-unitary memory channels studied by Ryb\'{a}r and Ziman~\cite{rybar}, will serve as our running example.
+
+For a user who tests one output at a time, the machine works indefinitely. A user who needs independent random bits receives a different resource. We therefore distinguish accuracy of each output marginal from accuracy of the joint output state. We also require the memory to return after each use, so that it can be inspected whenever another input is about to arrive. These choices allow us to ask quantitatively how much memory repeated transformation consumes.
+
+The reverse transformation brings entropy into the question. A machine that changes fresh fair bits into zeros must retain the entropy removed from them. We show that exact return of its memory prevents this for every initializer. Approximate return behaves differently as memory dimension grows: an increasingly large mixed register can absorb entropy while moving only a small trace distance. We give a fixed-unitary construction that controls this movement after every use and compare it with a spectral lower bound.
+
+We then examine the coherent quantum homogenizer, in which each input undergoes partial swaps with a reservoir. This circuit underlies the proposal of constructor-based irreversibility in Ref.~\cite{prl}. Its finite memory makes it possible to study the physical cost of returning a machine without replacing its internal correlations by a product state. We find a small-return asymmetry for output marginals, derive a sharp one-use reservoir cost, and identify a two-output obstruction to independent service. The exact dynamics also let us compare the deterioration criteria used in the original Letter and later treatments. We give that comparison in Appendixes~\ref{app:relaxation}, \ref{app:capable}, and~\ref{app:audit}.
+
+\section{States, outputs, and memory return}\label{sec:contracts}
+
+We write $p=\ket0\bra0$ and $\tau=I/2$. The forward transformation is $p\to\tau$, and the reverse is $\tau\to p$. A closed device has a memory $R$ of dimension $D=2^m$ in an initial state $\sigma_0$ independent of the inputs. At every visit, it applies the same unitary to the incoming qubit and $R$, then releases that qubit. The memory count $m$ includes clocks, buffers, retained random seeds, and workspace. We allow mixed initial memory and keep track of that resource. No register is reset or discarded during operation.
+
+Let $\Omega_n$ be the first $n$ outputs jointly, $\rho_j$ the $j$th output, and $\sigma_j$ the memory after that visit. We use trace distance and squared Uhlmann fidelity,
+\begin{align}
+ T(\rho,\sigma)&=\tfrac12\norm{\rho-\sigma}_1,\nonumber\\
+ F(\rho,\sigma)&=\left(\Tr\sqrt{\sqrt\rho\,\sigma\sqrt\rho}\right)^2.
+ \label{eq:conventions}
+\end{align}
+Entropies and the binary entropy $\ha$ are measured in bits; $\ln$ denotes the natural logarithm.
+
+For target state $b$, \emph{marginal service} means
+\begin{equation}
+ \max_{1\le j\le n}T(\rho_j,b)\le\epsilon,
+ \label{eq:marginal}
+\end{equation}
+and \emph{joint service} means
+\begin{equation}
+ T(\Omega_n,b^{\otimes n})\le\epsilon.
+ \label{eq:joint}
+\end{equation}
+The latter includes independence and controls every shorter output block by partial trace. Marginal accuracy refers to unconditional output states.
+
+Our return requirement is
+\begin{equation}
+ \max_{1\le j\le n}T(\sigma_j,\sigma_0)\le\delta.
+ \label{eq:return}
+\end{equation}
+We call this \emph{prefix return}. Endpoint return checks only the memory after visit $n$. Correlations with released outputs are retained throughout the dynamics, while Eq.~\eqref{eq:return} tests the memory's reduced state. We write $m_-^{\mathrm{ret}}(n,0,\delta)$ for the least number of memory qubits that give $n$ exact pure outputs from maximally mixed inputs with prefix return tolerance $\delta$; joint or marginal superscripts distinguish the corresponding approximate-output costs.
+
+The fair-bit machine illustrates these definitions directly:
+\begin{equation}
+ \rho_j=\tau,\qquad \sigma_j=\tau,\qquad
+ \Omega_n=\frac{\ket{0^n}\bra{0^n}+\ket{1^n}\bra{1^n}}2.
+ \label{eq:fairbit}
+\end{equation}
+Its marginal accuracy and return error vanish. Its outputs share the same random bit, as shown in Fig.~\ref{fig:fairbit}.
+
+\begin{table}[t]
+\caption{Notation for a closed device and for its homogenizer specialization. All errors are trace distances unless fidelity is written.}
+\label{tab:notation}
+\begin{ruledtabular}
+\begin{tabular}{lp{.68\columnwidth}}
+$n$ & Number of inputs served\\
+$m=\log_2D$ & Accessible memory, in qubits\\
+$M$ & Number of homogenizer reservoir cells\\
+$\epsilon,\delta$ & Output error and memory-return tolerance\\
+$\rho_j,\Omega_n$ & Output $j$ and the first $n$ outputs jointly\\
+$\sigma_j$ & Memory state after input $j$\\
+$u=\sin^2\eta$ & Partial-swap strength; $q=1-u$\\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+\begin{figure}[!t]
+\centering
+\input{figures/fairbit.tikz}
+\caption{A fair-bit randomizer. The upper wire is a memory qubit initially in $\tau=I/2$. At each visit it controls a CNOT onto a fresh qubit in $p=\ket0\bra0$. The memory remains in $\tau$ and every released qubit has state $\tau$. Measuring all outputs in the computational basis gives only the strings $0^n$ and $1^n$, each with probability $1/2$. Thus exact return of the memory and exact single-output accuracy coexist with perfect correlations between outputs.}
+\label{fig:fairbit}
+\end{figure}
+
+\section{Memory return in a closed device}\label{sec:general}
+
+\subsection{The entropy balance}
+
+When the incoming qubits are maximally mixed, the entropy absent from the outputs must appear in the memory. Correlations tighten that balance. The following statement also keeps the dependence on memory dimension visible.
+
+\statement{thm_entropy}
+
+Every bit of entropy removed from the outputs must increase the memory entropy. Correlations between the outputs and memory use additional capacity. Unitary invariance of entropy, subadditivity, and Audenaert's continuity bound~\cite{audenaert} turn this balance into the inequalities above; Appendix~\ref{app:general} gives the proof.
+
+Exact return has a particularly simple consequence.
+
+\statement{cor_exactreturn}
+
+With its entropy restored, the memory has no capacity left to absorb entropy from the inputs. The outputs must retain their entire initial entropy, and the equality case also removes their correlations with the memory. The proof is in Appendix~\ref{app:general}.
+
+We can express the approximate-return cost through the entropy defect
+\begin{equation}
+ \mathfrak r(D,\delta)=\ha(\delta)+\delta\log_2(D-1).
+ \label{eq:defect}
+\end{equation}
+If this defect is $o(n)$, output error tending to zero is incompatible with reverse service. For fixed finite memory, the defect remains bounded as more inputs arrive. When the memory grows, the factor $\log_2D$ measures its capacity to absorb entropy despite a small trace change.
+
+An initially pure memory obeys the additional bound
+\begin{equation}
+ F(\sigma_n,\sigma_0)\le2^{-n}+e_{\rm all},\qquad
+ e_{\rm all}=1-\bra{0^n}\Omega_n\ket{0^n}.
+ \label{eq:pure-return}
+\end{equation}
+Here $e_{\rm all}\le\epsilon$ under joint accuracy and $e_{\rm all}\le n\epsilon$ under marginal accuracy. The initial global state has largest eigenvalue $2^{-n}$. This bounds the probability that both the outputs and the memory occupy their prescribed pure states.
+
+At one use, Eq.~\eqref{eq:pure-return} requires $\delta\ge1/2-\epsilon$. This will be the reverse obstruction for the homogenizer.
+
+\subsection{Randomization with exact return}
+
+The fair-bit machine supplies the least demanding form of forward service. Independent outputs require a larger memory, but they can still leave its reduced state unchanged.
+
+\statement{thm_forwardoptimal}
+
+A mixed memory can distribute two independent Pauli labels per qubit among the released outputs while preserving its own reduced state. The output rank makes this capacity precise: pure inputs and a memory of initial rank $r_0$ give an output state of rank at most $Dr_0\le D^2$.
+
+To attain that rank, we initialize the memory in $\tau^{\otimes m}$ and, at each visit, apply a Hadamard to the input, a CNOT from the input to the leading memory qubit, a Hadamard to that memory qubit, and a cyclic memory rotation. The first two visits to each cell encode two independent Pauli labels. Their trace orthogonality gives the stated output error, while the memory's mixture of unitary conjugations preserves $\tau^{\otimes m}$.
+
+This factor-of-two saving is the catalytic-randomness mechanism of Boes and collaborators~\cite{boes}, with its correlational resource analyzed by Lie and Jeong~\cite{lie}. Counted Pauli streaming also appears in Ref.~\cite{douglas}. The cyclic implementation used here needs no additional clock for the prescribed pure input. Appendix~\ref{app:general} gives its full construction and covers every horizon, including $n>2m$.
+
+\subsection{Purification with approximate return}
+
+To understand how closely the reverse machine can return, we allow a mixed initializer whose spectrum extends over many scales. Approximate catalytic erasure with increasing dimension was established by Ng and collaborators~\cite{ng}. Here we control the memory after every intermediate visit using one fixed cyclic unitary.
+
+\statement{thm_dyadic}
+
+The construction places zero bits at the head of a register with a dyadic probability distribution. A visit emits the leading zero and appends the incoming fair bit. Most of the spectrum is unchanged by this dilation; the probability mass that moves after $t$ visits is exactly $t/(m-n+2)$. Figure~\ref{fig:shift} shows the register, and Appendix~\ref{app:general} gives the initializer and the probability calculation.
+
+\begin{figure}[!t]
+\centering
+\input{figures/shift.tikz}
+\caption{A closed register that purifies $n$ fresh maximally mixed qubits. The $m$-qubit initializer contains $n$ leading zeros and a diagonal tail with the dyadic spectrum in Eq.~\eqref{eq:dyadicspectrum}. Each use swaps out the leading bit and moves the incoming fair bit to the tail. After $t\le n$ uses, the released qubits are exactly $p^{\otimes t}$ and the memory has gained $t$ bits of entropy. Its trace distance from the initializer is $t/(m-n+2)$ for $m\ge2n$. Every register shown is retained and counted.}
+\label{fig:shift}
+\end{figure}
+
+A spectral converse narrows the additive gap left by the entropy inequality. It is the closed-unitary form of the endpoint catalyst bound in Ref.~\cite{ng}.
+
+\statement{prop_spectralreturn}
+
+Pure outputs separate from everything retained in the device. The memory therefore carries the full incoming mixture, which appears in its spectrum as repeated, diluted copies of the initial eigenvalues. Summing the trace-distance constraints across successive groups of eigenvalues gives Eq.~\eqref{eq:spectralreturn}; Appendix~\ref{app:general} supplies the argument.
+
+A return tolerance therefore measures a resource cost even for a device that appears almost unchanged. Exact purification requires $n/\delta+O(n)$ memory qubits as $\delta$ decreases, whereas exact independent randomization uses $n/2+O(1)$ and returns its memory exactly. The fair-bit version of forward service uses one qubit for every horizon. Figure~\ref{fig:costs} shows the finite-size bounds for independent outputs.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=.48\textwidth]{figures/cost_horizon.pdf}\hfill
+\includegraphics[width=.48\textwidth]{figures/cost_tolerance.pdf}
+\caption{Memory needed to convert pure qubits to independent maximally mixed outputs, or to reverse that transformation, in a closed device allowing mixed initialization and return after every use. (a) Horizon $n$ at fixed return tolerance $\delta=0.1$. (b) Return tolerance at $n=32$. The solid curve is the exact randomization optimum $\lceil n/2\rceil$, attained with zero return error. For purification, the shaded region lies between the spectral lower bound~\eqref{eq:spectralmemory} and the achievable dyadic upper bound~\eqref{eq:erasurecost}; its edges are dotted and dashed, respectively. All values are exact integer evaluations, including rounding. The region brackets the optimum rather than identifying a finite-size cost.}
+\label{fig:costs}
+\end{figure*}
+
+For approximate outputs, we retain a classical flag as part of the memory. With probability $w$ the flag selects the purification device; otherwise the device leaves the input and memory unchanged.
+
+We take $w=1-\epsilon$ for joint service and $w=1-2\epsilon$ for marginal service. Counting the flag gives
+\begin{equation}
+ m\le1+\max\left\{2n,\left\lceil\frac{wn}{\delta}\right\rceil+n-2\right\}.
+ \label{eq:flagupper}
+\end{equation}
+Together with Theorem~\ref{thm:entropy}, this yields, for fixed $0\le\epsilon<1/2$,
+\begin{equation}
+ \lim_{\delta\downarrow0}\limsup_{n\to\infty}
+ \frac{\delta\,m_-^{\mathrm{ret,joint}}(n,\epsilon,\delta)}n
+ =1-\epsilon.
+ \label{eq:jointapproxrate}
+\end{equation}
+The corresponding marginal coefficient lies between $1-\ha(\epsilon)$ and $1-2\epsilon$.
+
+\section{The repeated quantum homogenizer}\label{sec:homogenizer}
+
+The coherent homogenizer replaces the freely chosen memory unitary by a sequence of partial swaps. Its reservoir consists of $M$ qubits in $b^{\otimes M}$. Each independent input in state $a$ visits the cells in the same order through
+\begin{equation}
+ U_\eta=\cos\eta\,I+i\sin\eta\,\SW,
+ \qquad 0<\eta\le\pi/2.
+ \label{eq:partialswap}
+\end{equation}
+We write $u=\sin^2\eta$ and $q=1-u$. The forward initializer is $\tau^{\otimes M}$, the reverse initializer $p^{\otimes M}$. This is the partial-swap machine introduced by Ziman, Bu\v{z}ek, and collaborators~\cite{ziman}, closely related to the thermalizing machines of Ref.~\cite{scarani}.
+
+Let $\Phi_{b,k}$ be the channel that introduces one fresh qubit in state $b$, sweeps it through a $k$-qubit block, and traces it out. The repeated circuit has two exact evaluations:
+\begin{align}
+ \Omega_{M,n}&=\Phi_{b,n}^{\,M}(a^{\otimes n}),\nonumber\\
+ \sigma_{M,n}&=\Phi_{a,M}^{\,n}(b^{\otimes M}).
+ \label{eq:column}
+\end{align}
+Changing from rows to columns exchanges only gates on disjoint wires. This collision-model rearrangement appears in Refs.~\cite{gp,cascade}. Figure~\ref{fig:grid} shows the two orders. It lets us keep all correlations while working with whichever block is smaller.
+
+\begin{figure}[!t]
+\centering
+\input{figures/grid.tikz}
+\caption{Two evaluations of a repeated partial-swap circuit. Rows label successive inputs $S_i$, and columns label reservoir cells $R_j$. Each square acts on the two wires named by its row and column; the number gives its position in the evaluation order. Changing from row order to column order reverses only pairs on distinct rows and columns, whose gates commute. The total unitary is unchanged. Tracing a completed column gives a fresh-ancilla channel on the output block, yielding Eq.~\eqref{eq:column}.}
+\label{fig:grid}
+\end{figure}
+
+\subsection{Return after one use}
+
+A weak partial swap transfers little information to each reservoir cell, but the accumulated disturbance depends on the whole reservoir. Its purity gives an exact measure of that accumulation. A fourth-moment bound then converts purity into a trace-distance lower bound.
+
+\statement{thm_moments}
+
+The squared disturbance accumulates by an amount of order $u^2$ per fresh cell. A large reservoir can therefore contain many individually small changes whose combined size remains measurable.
+
+To obtain the identity, we evolve the initial input Pauli operator and separate its coefficient on the system identity. Adding a fresh cell changes the normalized second moment by $a\mapsto a+u^2(1-a)$. The fourth moment bounds how strongly the spectral weight can concentrate. Interpolation between the first, second, and fourth moments gives Eq.~\eqref{eq:returnlower}. The derivation is in Appendix~\ref{app:moments}.
+
+\statement{cor_singlecost}
+
+The first output has trace error exactly $q^M/2$. Accuracy thus needs a total coupling of order $Mu\sim\ln(1/\epsilon)$, while return requires $u\sqrt M$ to remain of order $\delta$. Combining these two scales gives the logarithm-squared reservoir cost. Appendix~\ref{app:moments} retains the constants and integer rounding.
+
+For a prescribed coupling, increasing the reservoir size eventually conflicts with return. With $\ell=\ln[1/(2\epsilon)]$ and $0<\epsilon,\delta\le1/4$, necessary conditions are
+\begin{equation}
+ \frac{\ell}{-\ln(1-u)}\le M\le\frac{128\delta^2}{u^2}.
+ \label{eq:prescribed1necess}
+\end{equation}
+The inequalities $\ell/u\le M\le4\delta^2/u^2$ are sufficient, with integer rounding. At weak coupling these intervals match up to constants: feasibility requires $u\ell$ of order at most $\delta^2$.
+
+The reverse initializer is pure, so Eq.~\eqref{eq:pure-return} applies. In fact, its one-use tradeoff is exact:
+\begin{equation}
+ T(\rho_{M,1},p)=\frac{q^M}{2},\qquad
+ T(\sigma_{M,1},p^{\otimes M})=\frac{1-q^M}{2}.
+ \label{eq:reverse-first}
+\end{equation}
+Accurate purification and small return error already conflict at the first input.
+
+\subsection{Repeated marginal service}
+
+Repeated forward service must supply excitations from the reservoir to the initially zero inputs. Because the reservoir starts maximally mixed, its initial excitation number is binomially distributed. Returning that distribution close to its starting point limits the transport it can support.
+
+\statement{thm_transport}
+
+Every randomized output draws excitations from the reservoir. Returning the reservoir requires this transport to fit within the width of its initial number distribution.
+
+We prove this by coupling the initial excitation number $K$ to the final output and reservoir counts $X,Y$. Conservation gives $K=X+Y$ and $0\le X\le n$. Trace distance bounds the shift of each number threshold, and a binomial tail estimate bounds how many thresholds contribute appreciably. The argument uses endpoint return alone; Appendix~\ref{app:transport} gives the details.
+
+For an upper bound, let $\Phi$ be the one-row reservoir channel. Contractivity gives $T(\Phi^j(\sigma_0),\sigma_0)\le jT(\Phi(\sigma_0),\sigma_0)$. We obtain
+\begin{align}
+ \max_{j\le n}T(\sigma_{M,j},\tau^{\otimes M})
+ &\le\tfrac n2u\sqrt M,\label{eq:telescope}\\
+ \max_{j\le n}T(\rho_{M,j},\tau)
+ &\le\tfrac12q^M+\tfrac{n-1}{2}u\sqrt M.
+ \label{eq:legacyupper}
+\end{align}
+A second estimate uses the rotational symmetry of the fresh-$\tau$ column channel to control output accuracy independently of the return telescope.
+
+\statement{lem_collective}
+
+Weak collisions wash out each spin's polarization while allowing correlations between spins to persist. The channel's second-order generator is collective depolarization. Every one-qubit Pauli observable belongs to its rank-one tensor sector, on which the generator has eigenvalue $-1$. A uniform bound on the exact channel's Taylor remainder controls the finite step size. We give that estimate in Appendix~\ref{app:collective}.
+
+\statement{thm_manyupper}
+
+Both designs spread the disturbance across many weak collisions. The first controls output accuracy through the changing reservoir state; the second uses the decay of one-qubit observables.
+
+For the first design, the terms in Eq.~\eqref{eq:legacyupper} divide the allowed output error between first-use accuracy and accumulated memory change. For the second, Lemma~\ref{lem:collective} controls the outputs while Eq.~\eqref{eq:telescope} controls return. The proof and the parameter checks appear in Appendix~\ref{app:transport}.
+
+At prescribed weak coupling, a sufficient interval is
+\begin{equation}
+ \frac{2L}{\eta^2}\le M\le\frac{4\delta^2}{n^2\sin^4\eta},
+ \qquad \eta\le\frac{3}{8n^3}.
+ \label{eq:prescribedmany}
+\end{equation}
+The first-use interval and excitation-transport lower bound continue to apply. Finite-horizon resource questions and individual-cell disturbance also appear in Refs.~\cite{vm,beever}; the return distances here refer to the whole correlated reservoir.
+
+\subsection{What two outputs reveal}
+
+The fair-bit randomizer warns that accurate marginals can conceal correlations. In the homogenizer, a singlet measurement on the first two outputs detects the same issue quantitatively.
+
+\statement{thm_singlet}
+
+Two independent fair qubits occupy the singlet with probability $1/4$. Keeping the reservoir close to its initial state limits how quickly that population can build up in the outputs.
+
+The adjoint two-cell channel sends the singlet projector to $u^2I/4+(1-u^2)P_-$. Iteration determines the singlet population. The independent target $\tau^{\otimes2}$ has singlet probability $1/4$, and the one-use purity identity ties the deficit to the first return error. Appendix~\ref{app:singlet} gives the calculation.
+
+At fixed $n$, this correlated behavior has a simple weak-coupling limit. For $\eta=M^{-\alpha}$ with $1/3<\alpha<1/2$, the reservoir returns in trace distance and
+\begin{equation}
+ \Omega_{M,n}\longrightarrow\frac{\Pi_{\mathrm{sym}}}{n+1},
+ \label{eq:collectivetwirl}
+\end{equation}
+where $\Pi_{\mathrm{sym}}$ projects onto the symmetric $n$-qubit subspace. Each output is maximally mixed, while the joint trace distance from $\tau^{\otimes n}$ tends to $1-(n+1)/2^n$. At two outputs the distance is $1/4$. This is the collective counterpart of the fair-bit example: the returned memory accompanies a correlated family of individually correct outputs. Figure~\ref{fig:singletdata} resolves both errors along a weak-coupling sequence.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{figures/singlet_data.pdf}
+\caption{Two-input randomization $p^{\otimes2}\to\tau^{\otimes2}$, where $p=\ket0\bra0$ and $\tau=I/2$. The reservoir starts in $\tau^{\otimes M}$, with $M=k^5$, $\eta=2\arctan[1/(2k^2)]$, $k=1,\ldots,32$. The largest marginal trace error falls while the joint error approaches $1/4$. The dotted curve is the singlet lower bound $(1-u^2)^M/4$; the dash-dotted curve bounds prefix return by $\min\{1,u\sqrt M\}$. Exact rational channel entries, 512-bit outward-rounded matrix powers, and enclosed spectral radicals give trace-error intervals narrower than $5\times10^{-114}$. Code and rational interval endpoints accompany the figure.}
+\label{fig:singletdata}
+\end{figure}
+
+\section{Retaining the ability to act again}\label{sec:ability}
+
+Constructor theory describes a constructor by its continued ability to perform a task. Deutsch allows its other attributes to change after use~\cite{deutsch}. The information paper represents attributes by sets of states~\cite{information}, and the thermodynamics paper allows microscopic changes within a constructor attribute~\cite{thermo}. The Letter similarly describes remaining within a suitable set of states~\cite{prl}. Together, these formulations direct attention to the transformations the machine can still perform.
+
+For prescribed independent inputs and unconditional marginal accuracy, an invariant capability set captures that requirement. Let $\Phi_a$ update the memory and $\mathcal O_a$ produce the current output. Define
+\begin{align}
+ V_\epsilon&=\{\sigma:T(\mathcal O_a(\sigma),b)\le\epsilon\},\nonumber\\
+ C_\epsilon&=\bigcap_{j\ge0}\Phi_a^{-j}(V_\epsilon).
+ \label{eq:capabilityinvariant}
+\end{align}
+The inverse notation means set preimage. Membership in $C_\epsilon$ means that every horizon is served at tolerance $\epsilon$, and $\Phi_a(C_\epsilon)\subseteq C_\epsilon$. This is the fixed-error version of the nested capability sets in Refs.~\cite{vm,thesis}.
+
+Memory return provides a useful sufficient comparison for a fixed future experiment supplied independently of earlier outputs: trace distance bounds the change of every outcome probability. Continued ability can also survive a large state change, as when a clock advances to an orthogonal state. The fair-bit machine illustrates the other direction. Its unconditional memory state returns exactly, but observing one output determines the next. Asking for independent outputs therefore changes the operational requirement.
+
+The deterioration ratios introduce further choices. The published first-use numerator differs from the later current-output numerator, and their limiting procedures differ as well. The exact current-error ratio has opposite iterated limits in both task directions; Fig.~\ref{fig:ratios} shows finite-size slices. A first-use-capable product initializer also makes the Letter's capability infimum tend to zero. We give the proofs in Appendixes~\ref{app:relaxation} and~\ref{app:capable}, with the version-specific definitions in Appendix~\ref{app:audit}.
+
+A final distinction concerns the horizon. Serving each finite horizon with a sufficiently large device has quantifiers $\forall n\,\forall\epsilon>0\,\exists D<\infty$. Unlimited reuse instead places the finite device before the universal horizon. The fair-bit machine meets that uniform marginal requirement. For independent joint outputs, every fixed finite memory has error tending to one when the input and target entropy densities differ; Appendix~\ref{app:finite} proves this statement.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=.48\textwidth]{figures/ratio_reservoir.pdf}\hfill
+\includegraphics[width=.48\textwidth]{figures/ratio_uses.pdf}
+\caption{The current-output infidelity divided by reservoir return fidelity, $R_{M,n}$ of Eq.~\eqref{eq:ratiodef}, for $p=\ket0\bra0$ and $\tau=I/2$ at $\eta=\pi/4$. (a) At two uses, both directions tend to zero as the reservoir grows. The gray forward band is the rigorous enclosure $e_{M,2}\le R_{M,2}\le4e_{M,2}$, where $e_{M,2}=1-F(\rho_{M,2},\tau)$ is rigorously enclosed from the exact two-cell channel. Forward markers at $M\le6$ use exact reservoir matrices with certified spectral root isolation; the reverse curve uses an exact conditional two-cell channel for its denominator. (b) With two reservoir cells, both ratios tend to $2^{M-1}=2$. Both curves use exact rational memory updates and enclosed square roots. Certified-value interval widths are below $10^{-28}$. Lines join integer samples. These slices display the common limits, although the finite-size ratios differ.}
+\label{fig:ratios}
+\end{figure*}
+
+\section{Resource comparison}\label{sec:resources}
+
+Table~\ref{tab:return} gathers the results with return after every use. The two freely chosen-memory constructions establish the general asymmetry: independent randomization can return the memory exactly, while exact purification has a memory cost proportional to the horizon divided by the allowed return error. The homogenizer has a sharper restriction because its initializer and excitation-conserving gate are fixed. Its small-return forward operation survives for marginal outputs, and the first two outputs already distinguish it from independent service.
+
+\begin{table*}[t]
+\caption{Memory requirements with whole-memory return after every use. The unrestricted-device rows allow arbitrary mixed initialization and count all accessible memory. The homogenizer keeps its designated product initializer and uses trace-distance output error $\epsilon$. The stated small-error ranges and constants are given in the referenced equations.}
+\label{tab:return}
+\begin{ruledtabular}
+\begin{tabular}{p{.32\textwidth}p{.31\textwidth}p{.29\textwidth}}
+Device and output requirement & Randomization $p\to\tau$ & Purification $\tau\to p$\\
+\hline
+Closed device, exact marginals & One qubit; exact prefix return & $n/\delta+O(n)$ qubits; exact return impossible\\[4pt]
+Closed device, exact joint outputs & $\lceil n/2\rceil$ qubits; exact prefix return & $n/\delta+O(n)$ qubits; exact return impossible\\[4pt]
+Homogenizer, one use, optimized coupling & $\Theta(\ln^2(1/\epsilon)/\delta^2)$ cells & Requires $\delta\ge1/2-\epsilon$\\[4pt]
+Homogenizer, $n$ marginal uses & Bounds in Eqs.~\eqref{eq:singlecost}, \eqref{eq:transport}, \eqref{eq:designold}, and~\eqref{eq:designnew} & Same one-use restriction\\[4pt]
+Homogenizer, $n\ge2$ joint outputs & Requires $\epsilon+\delta/2\ge1/4$ & Same one-use restriction
+\end{tabular}
+\end{ruledtabular}
+\end{table*}
+
+We retain the output-only comparison in Table~\ref{tab:outputonly}. Its rates are defined by
+\begin{equation}
+ c_{\mathcal C,\mathcal K}(a\to b)=
+ \lim_{\epsilon\downarrow0}\limsup_{n\to\infty}
+ \frac{m_{\mathcal C,\mathcal K}(n,\epsilon)}n,
+ \label{eq:rate}
+\end{equation}
+where $\mathcal C$ fixes the device class and $\mathcal K$ the output requirement. Return is unrestricted in this definition. The lower bounds use rank, entropy, and excitation conservation; full swap attains the homogenizer's upper bound. Appendix~\ref{app:resources} gives the finite-error statements.
+
+\begin{table}[t]
+\caption{Output-only memory rates from Eq.~\eqref{eq:rate}, in qubits per input. No return condition is imposed. The homogenizer optimization includes full swap; all other initializer restrictions are stated in the first column.}
+\label{tab:outputonly}
+\begin{ruledtabular}
+\begin{tabular}{p{.66\columnwidth}cc}
+Device and output requirement & $p\to\tau$ & $\tau\to p$\\
+\hline
+Closed unitary, joint, mixed initialization & $1/2$ & $1$\\
+Closed unitary, marginal & $0$ & $1$\\
+Homogenizer, joint & $1$ & $1$\\
+Homogenizer, marginal & $1$ & $1$\\
+Closed unitary, joint, pure initialization & $1$ & $1$
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+\section{Scope and open questions}\label{sec:scope}
+
+The service requirements concern prescribed input states, with memory initially independent of those inputs. They do not define a channel on arbitrary inputs or a guarantee against adaptive entangled testers. Marginal accuracy and reduced-state return allow correlations with earlier outputs; conditioning on those outputs can change the memory's operational state. All upper bounds count accessible registers, permit mixed initialization where stated, and concern memory size rather than efficient gate synthesis. The constructor-theory interpretation remains a choice of operational requirements within unitary quantum mechanics. The joint finite-memory obstruction covers different entropy densities; equal-entropy transformations lie outside that result.
+
+The main quantitative gap is the forward homogenizer's simultaneous dependence on $n$, $\epsilon$, $\delta$, and a prescribed weak coupling. Equations~\eqref{eq:singlecost} and~\eqref{eq:transport} match the upper bounds in fixed-parameter slices, but the general many-use optimum remains unresolved. The $n^6$ term in Eq.~\eqref{eq:designnew} comes from a Taylor-remainder estimate and is not proposed as the true physical cost. The fixed-positive-error marginal return coefficient for unrestricted devices also remains between $1-\ha(\epsilon)$ and $1-2\epsilon$. The collective limit~\eqref{eq:collectivetwirl} holds at fixed $n$. The singlet obstruction assumes prefix return; endpoint-only return permits intermediate disturbance. Strict partial swaps approach output-only upper bounds at positive error, while exact finite-size service in that comparison uses full swap.
+
+The source audit uses the identified arXiv versions and the publisher's supplement; the arXiv v2 source archive was unavailable. The verification record distinguishes written proofs, exact algebraic checks, certified plotting intervals, and floating-point tests. A separate AI model (Claude) reviewed the code but not the proofs. A compiled Lean proof covers only the soundness of disjoint-gate exchange certificates (Appendix~\ref{app:review}). Priority beyond the cited mechanisms requires specialist assessment. The plotted intervals certify finite calculations; the asymptotic statements rest on the proofs.
+
+\section{Conclusion}
+
+A returned memory can have supplied either fresh randomness or a correlation shared by all its outputs. The distinction changes the cost of repeated state transformation. For arbitrary closed devices, exact return allows forward randomization and forbids reverse purification; approximate return gives purification a leading memory cost of $n/\delta$. In the homogenizer, weak collisions allow accurate output marginals while the whole reservoir returns close to its initializer. A singlet measurement on two outputs reveals the independence that this operation sacrifices.
+
+These are operational asymmetries with stated resources and tests. They survive an exact analysis of the repeated circuit, even though the published deterioration criteria fail to separate the two directions. The physical question is therefore which ability the machine must retain, and what memory is needed to retain it.
+
+\begin{acknowledgments}
+The author selected the research questions, directed the work and its revisions, and is responsible for the content. GPT-6 Astra (OpenAI) assisted with mathematical exploration, source comparison, code development, and manuscript preparation, and Claude (Anthropic) was used for review and editing. Appendix~\ref{app:review} describes the checks performed and their limits.
+\end{acknowledgments}
+
+\section*{Data availability}
+{\setlength{\rightskip}{0pt plus 1fil}The source code, certified figure data, and machine-readable records for the finite checks are available at \repolink{}. The proofs and source locators are included in the appendixes.\par}
+
+\appendix
+\input{appendices/general.tex}
+\input{appendices/moments.tex}
+\input{appendices/transport.tex}
+\input{appendices/collective.tex}
+\input{appendices/singlet.tex}
+\input{appendices/relaxation.tex}
+\input{appendices/capable.tex}
+\input{appendices/resources.tex}
+\input{appendices/finite.tex}
+\input{appendices/audit.tex}
+\input{appendices/verification.tex}
+\makeatletter\immediate\write\@auxout{\string\citation{apsrev42Control}}\makeatother
+\bibliographystyle{apsrev4-2}
+\bibliography{references}
+\end{document}

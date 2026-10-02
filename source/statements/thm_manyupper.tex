@@ -1,0 +1,16 @@
+\begin{theorem}[Many-use upper bounds]\label{thm:manyupper}
+Let $0<\epsilon,\delta\le1/4$, $L_0=\ln(1/\epsilon)$, $L=\ln(2/\epsilon)$, and $r=\min\{\delta,\epsilon/2\}$. Either of the following independent designs gives all marginal output errors at most $\epsilon$ and every prefix return error at most $\delta$:
+\begin{equation}
+ \begin{gathered}
+ M\ge\max\{2L_0,n^2L_0^2/(4r^2)\},\\
+ \sin^2\eta=L_0/M;
+ \end{gathered}\label{eq:designold}
+\end{equation}
+\begin{equation}
+ \begin{gathered}
+ M\ge\max\{16n^6L,n^2L^2/\delta^2\},\\
+ \eta^2=2L/M.
+ \end{gathered}\label{eq:designnew}
+\end{equation}
+The better of these two bounds may be used, after rounding $M$ upward.
+\end{theorem}

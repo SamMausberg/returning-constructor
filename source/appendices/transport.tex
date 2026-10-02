@@ -1,0 +1,30 @@
+\section{Many-use lower and upper bounds}\label{app:transport}
+\subsection{Excitation transport}
+\begin{proof}[Proof of \Cref{thm:transport}]
+Measure the initial total excitation $K$, the final output excitation $X$, and final reservoir excitation $Y$. The initial state commutes with total excitation, so a joint classical coupling can be obtained by recording its initial sector and then making the final measurements. Conservation gives $K=X+Y$, where $K\sim\Bin(M,1/2)$ and $0\le X\le n$. Thus $Y\le K$, and
+\begin{equation}
+ \mathbb E X=\sum_{t\in\mathbb Z}\{F_Y(t)-F_K(t)\}\ge bn.
+\end{equation}
+Each summand is nonnegative and at most $\delta$, by trace-distance contractivity under the number measurement.
+
+Set $w=\sqrt{(M/2)\ln(4/b)}$. Hoeffding's binomial bound gives $\Pr(|K-M/2|>w)\le b/2$. For central $K$, the interval of thresholds crossed in moving from $K$ to $Y$ is contained in $[M/2-w-n,M/2+w]$, which has at most $2w+n+2$ integer thresholds. Its expected contribution is at most $\delta(2w+n+2)$. The tail contributes at most $n\Pr(\text{tail})\le bn/2$. Rearranging $bn\le\delta(2w+n+2)+bn/2$ proves~\eqref{eq:transport}.
+\end{proof}
+
+\subsection{Telescoping the memory change}
+Let $\Phi$ be the reservoir update channel for a pure incoming qubit. Trace-distance contractivity gives
+\begin{align}
+ T(\Phi^j(\sigma_0),\sigma_0)
+ &\le\sum_{r=0}^{j-1}T(\Phi^{r+1}(\sigma_0),\Phi^r(\sigma_0))\nonumber\\
+ &\le j T(\Phi(\sigma_0),\sigma_0)
+ \le \tfrac j2 u\sqrt M.
+\end{align}
+The current-output channel is also a trace-distance contraction. Comparing its input memory with $\sigma_0$ bounds the $j$th output error by the first-use error $q^M/2$ plus $(j-1)u\sqrt M/2$. This proves Eqs.~\eqref{eq:telescope} and~\eqref{eq:legacyupper}.
+
+\subsection{Parameter choices}
+\begin{proof}[Proof of \Cref{thm:manyupper}]
+For~\eqref{eq:designold}, the two terms in~\eqref{eq:legacyupper} are at most $\epsilon/2$ and $r$;~\eqref{eq:telescope} is at most $r$. For~\eqref{eq:designnew}, the first size bound ensures $\eta\le3/(8n^3)$. Equation~\eqref{eq:collectiveupper} is at most $(3/4)e^{-L}<\epsilon$. Using $\sin^2\eta\le\eta^2$ in~\eqref{eq:telescope} bounds return by $nL/\sqrt M\le\delta$.
+\end{proof}
+
+At fixed $n$, once the weak-coupling constraint $16n^6L$ is dominated, Eq.~\eqref{eq:designnew} has the logarithm-squared accuracy dependence required by the one-use lower bound. At fixed $\epsilon$, the first construction and Eq.~\eqref{eq:transport} both scale as $n^2/\delta^2$ when $\delta$ is sufficiently small and the positive-part threshold is exceeded. These are the matched slices described in Sec.~\ref{sec:scope}.
+
+For prescribed weak coupling, $M\ge2L/\eta^2$ and \cref{lem:collective} give the output bound, while $M\le4\delta^2/(n^2\sin^4\eta)$ and Eq.~\eqref{eq:telescope} give prefix return. This proves Eq.~\eqref{eq:prescribedmany}.

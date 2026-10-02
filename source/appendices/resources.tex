@@ -1,0 +1,36 @@
+\section{Output-only resource bounds}\label{app:resources}
+
+For arbitrary closed devices with $m$ memory qubits, the reverse joint optimum is
+\begin{equation}
+ E_-^*(n,m)=\max\{0,1-2^{m-n}\}.
+ \label{eq:reverseoptimal}
+\end{equation}
+The initial global largest eigenvalue is at most $2^{-n}$. The all-zero-output event, lifted to output plus memory, is a rank-$2^m$ projector and has probability at most $2^{m-n}$. Measuring that event gives the trace-error lower bound. A cyclic register of $m$ pure cells emits zeros for the first $m$ visits and maximally mixed states thereafter, attaining~\eqref{eq:reverseoptimal}. The forward optimum is~\eqref{eq:forwarderror}. These optima also hold when the error is squared-fidelity infidelity: forward, $F(\Omega_n,\tau^{\otimes n})=(\Tr\sqrt{\Omega_n})^2/2^n\le\rank(\Omega_n)/2^n$; reverse, fidelity is precisely the all-zero probability.
+
+If the initial memory must be pure, the forward output rank is at most $D$, rather than $D^2$. Exact joint service then costs $n$ memory qubits in both directions. It is attainable forward by creating one Bell pair with a fresh pure memory cell per visit, and reverse by swapping a fresh pure cell. A counted cyclic register implements both over the stated horizon. The dependence on initial mixedness is also visible from entropy balance: exact joint forward service requires $n\le m+S(\sigma_0)$, while exact reverse service requires $n\le m-S(\sigma_0)$.
+
+For reverse marginal service at fixed $0<\epsilon<1/2$, the output-only memory rate is
+\begin{equation}
+ m_-^{\rm marg}(n,\epsilon)=n[1-\ha(\epsilon)]+o(n).
+ \label{eq:margcompression}
+\end{equation}
+The lower bound is entropy conservation and subadditivity. For achievability, choose a block length $\ell\to\infty$ with $\ell=o(n)$, and a Hamming ball $B\subset\{0,1\}^{\ell}$ of radius $\lfloor\epsilon\ell\rfloor$. Put $r=\lceil\ell-\log_2|B|\rceil$. Since $|B|2^r\ge2^\ell$, there is an injection of all input strings into $B\times\{0,1\}^r$. Extending that injection from the subspace with an initially pure $r$-bit record to a reversible permutation gives a closed compression operation.
+
+A retained uniformly random cyclic rotation of each output block makes each bit's unconditional error at most $\epsilon$, even if the encoded distribution on $B$ is nonuniform. The seed uses $O(\log\ell)$ bits and is counted. Reusing the seed is allowed for marginal service: every fresh input block is independent of it, although old outputs need not be. An $\ell$-cell buffer initially emits pure zeros while collecting the first block. After collection it compresses into that buffer and a fresh preallocated $r$-bit record. Subsequent visits emit the low-weight buffer while collecting the next independent block. At every completed block the same procedure is repeated with another preallocated record. No record is reset or discarded.
+
+A finite clock indexing the visits and fresh record locations makes these scheduled reversible operations one fixed unitary on an enlarged counted memory. The buffer, clock, and seed cost $O(\ell+\log n)$; the records cost at most $(n/\ell)r+O(r)$. The elementary Hamming-ball asymptotic $\log_2|B|=\ell\ha(\epsilon)+o(\ell)$ proves~\eqref{eq:margcompression}.  Reversible entropy compression has earlier precedents~\cite{sv}. 
+
+For the homogenizer with return ignored, full swap gives exact joint service for $n$ visits using $M=n$ cells. Forward marginal accuracy requires $M\ge n(1-2\epsilon)$ by excitation conservation: the initial reservoir contains $M/2$ expected excitations and the outputs require at least $n(1/2-\epsilon)$. Reverse marginal accuracy requires $M\ge n[1-\ha(\epsilon)]$ by entropy conservation, since the reverse initializer is pure.
+
+For forward joint service, excitation conservation gives a stronger binomial bound. If $K_j\sim\Bin(j,1/2)$, the actual output excitation is bounded by $K_M$ in a coupling, whereas the target excitation is $K_n$. Thus
+\begin{equation}
+ \epsilon\ge\sup_t\{\Pr(K_n>t)-\Pr(K_M>t)\}.
+\end{equation}
+For $M<n$, choosing $t=(M+n)/4$ and applying Hoeffding's bound gives
+\begin{equation}
+ \epsilon\ge1-2e^{-(n-M)^2/(8n)},\qquad
+ M\ge n-\sqrt{8n\ln\frac2{1-\epsilon}}.
+ \label{eq:jointbinomial}
+\end{equation}
+Reverse joint service satisfies $M\ge\lceil n+\log_2(1-\epsilon)\rceil$, by~\eqref{eq:reverseoptimal}. For $\epsilon<1/2$ this integer bound is exactly $n$. These lower bounds and full-swap upper bounds prove the homogenizer rows of \cref{tab:outputonly}. Strict partial swaps can approximate the full-swap finite circuit at positive tolerance, but the first-use error $q^M/2$ is positive for every finite $M$ and $0<q<1$.
+

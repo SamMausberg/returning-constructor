@@ -1,0 +1,29 @@
+{
+  "precision_bits": 512,
+  "claim": "Rigorous finite-size enclosures; not proofs of asymptotic statements.",
+  "consistency": {
+    "exact_row_column_cases": 24,
+    "interval_vs_exact_powers": [
+      1,
+      2,
+      5,
+      9
+    ]
+  },
+  "ratios": {
+    "reservoir_points": 32,
+    "forward_certified_points": 6,
+    "uses_points": 48
+  },
+  "singlet": {
+    "points": 32,
+    "bits": 512,
+    "maximum_trace_error_enclosure_width": "28978885441008960120622458363529429104709/6703903964971298549787012499102923063739682910296196688861780721860882015036773488400937149083451713845015929093243025426876941405973284973216824503042048",
+    "width_float": 4.322688032589236e-114
+  },
+  "costs": {
+    "horizon_points": 128,
+    "tolerance_points": 97
+  },
+  "elapsed_seconds": 1.22349214553833
+}

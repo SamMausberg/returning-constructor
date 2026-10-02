@@ -1,0 +1,20 @@
+{
+  "policy_verified": "2026-10-02",
+  "limit_word_equivalents": 750,
+  "policy_urls": [
+    "https://journals.aps.org/prl/authors",
+    "https://journals.aps.org/authors/length-guide"
+  ],
+  "included": "Body, caption, data availability; displayed mathematics and figure area by APS weights.",
+  "excluded": "Title, author/date, bibliography, acknowledgments.",
+  "body_caption_and_inline_math_tokens": 407,
+  "inline_math_expressions": 49,
+  "inline_math_TeX_tokens": 207,
+  "display_rows": 4,
+  "display_word_equivalents": 64,
+  "figure_aspect_ratio": 2.6799999660915796,
+  "figure_word_equivalents": 75.97014996188783,
+  "estimated_total": 546.9701499618878,
+  "generous_inline_math_total": 704.9701499618878,
+  "interpretation": "An author estimate, not the journal production count. The generous variant charges each inline TeX command or alphanumeric token as a word."
+}

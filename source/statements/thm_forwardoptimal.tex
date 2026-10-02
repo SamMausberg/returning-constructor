@@ -1,0 +1,8 @@
+\begin{theorem}[Optimal forward memory]\label{thm:forwardoptimal}
+With arbitrary mixed initialization, the least joint trace error obtainable from $n$ pure inputs and $m$ memory qubits is
+\begin{equation}
+ E_+^*(n,m)=\max\{0,1-2^{2m-n}\}.
+ \label{eq:forwarderror}
+\end{equation}
+A fixed sequential unitary attains this error and returns the memory exactly at every prefix. Exact joint service therefore needs $\lceil n/2\rceil$ memory qubits. Exact marginal service needs only one memory qubit and can continue indefinitely.
+\end{theorem}

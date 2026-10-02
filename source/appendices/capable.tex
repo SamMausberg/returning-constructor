@@ -1,0 +1,29 @@
+\section{The capable-state obstruction}\label{app:capable}
+
+For the Letter's fixed-first-use definition, write
+\begin{align}
+ V_e&=\{\omega:F(\mathcal O_p(\omega),\tau)\ge1-e\},\nonumber\\
+ S_e(n)&=\inf_{\omega\in V_e}F(\omega,\Phi_{p,M}^{\,n}(\omega)).
+ \label{eq:infimum}
+\end{align}
+The intended initializer has first-output Bloch coordinate $q^M$ and $e_M=(1-\sqrt{1-q^{2M}})/2>0$ for $0<q<1$.
+
+\begin{proposition}[Product initializer]\label{prop:capable}
+For every strict partial swap and $M\ge2$, there is a product state $\omega\in V_{e_M}$ with $F(\omega,p^{\otimes M})=0$. Hence $S_{e_M}(n)\to0$ and $e_M/S_{e_M}(n)\to+\infty$.
+\end{proposition}
+\begin{proof}
+If $q\ge1/3$, choose $\omega=\ket1\bra1\otimes\tau^{\otimes(M-1)}$. Its first-output coordinate is $(2q-1)q^{M-1}$. The inequality $|2q-1|\le q$ holds precisely for $1/3\le q\le1$, and fidelity with $\tau$ decreases with the magnitude of that coordinate.
+
+If $0<q<1/3$, choose the first cell in $\ket1$ and the second with Bloch coordinate $z_2=q(1-2q)/(1-q)$. This lies in $[0,1]$. All later cells are in $\tau$. A fresh diagonal cell transforms the incoming reduced coordinate by $z\mapsto qz+(1-q)z_2$. After the first collision $z=2q-1$; after the second it is zero. Earlier system--cell correlations do not alter this step: the second cell is still independent and the interaction acts only on the system and that fresh cell. The reduced update therefore remains exact even with those earlier correlations.
+
+Both initializers have a first cell orthogonal to $p$. By~\cref{lem:relaxation}, $F(\omega,\Phi_{p,M}^{\,n}(\omega))\to0$. This bounds the nonnegative infimum from above. If its value is zero already at a finite $n$, the ratio is understood as $+\infty$; otherwise the positive numerator divided by a vanishing denominator diverges.
+\end{proof}
+
+We can also choose capable initializers arbitrarily close to the designated state as $M$ grows. For $q\ge1/2$, set
+\begin{equation}
+ \widetilde\omega_M=\frac{I-p^{\otimes M}}{2^M-1}.
+\end{equation}
+It has $T(\widetilde\omega_M,\tau^{\otimes M})=2^{-M}$ and zero overlap with $p^{\otimes M}$. By linearity its first-output Bloch coordinate is $(2^Mq^M-1)/(2^M-1)$, which lies between zero and $q^M$. It is therefore capable. Restricting capability to a fixed trace-neighborhood of the designated initializer does not automatically remove the obstruction.
+
+For comparison, in the reverse direction the attracting reservoir is $\tau^{\otimes M}$. Uniform relaxation makes the convergence of $F(\omega,\Phi_{\tau,M}^{\,n}(\omega))$ uniform in $\omega$. Since $F(\omega,\tau^{\otimes M})\ge2^{-M}$, with equality for every pure state, and the designated pure initializer is capable, the reverse infimum tends to $2^{-M}$. 
+

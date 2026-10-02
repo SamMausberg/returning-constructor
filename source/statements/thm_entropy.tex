@@ -1,0 +1,23 @@
+\begin{theorem}[Entropy and return]\label{thm:entropy}
+Let a closed device receive $\tau^{\otimes n}$ and have any initial memory state $\sigma_0$ on $D\ge2$ dimensions. If $T(\sigma_n,\sigma_0)\le\delta\le1/2$, then
+\begin{equation}
+ \begin{aligned}
+ n-S(\Omega_n)
+ &= S(\sigma_n)-S(\sigma_0)\\[-2pt]
+ &\quad-I(S_1\cdots S_n:R)\\
+ &\le\min\bigl\{m-S(\sigma_0),\\[-2pt]
+ &\qquad\quad\ha(\delta)+\delta\log_2(D-1)\bigr\}.
+ \end{aligned}
+ \label{eq:entropyreturn}
+\end{equation}
+Under marginal service with $0\le\epsilon\le1/2$,
+\begin{equation}
+ n[1-\ha(\epsilon)]\le\ha(\delta)+\delta\log_2(D-1).
+ \label{eq:reverse-marg-lb}
+\end{equation}
+Under joint service with $0\le\epsilon\le1/2$, $S(\Omega_n)$ in~\eqref{eq:entropyreturn} can be replaced by the upper bound
+\begin{equation}
+ s_{\rm joint}(n,\epsilon)=\ha(\epsilon)+\epsilon\log_2(2^n-1).
+ \label{eq:sjoint}
+\end{equation}
+\end{theorem}

@@ -1,0 +1,10 @@
+\begin{corollary}[Sharp single-use size]\label{cor:singlecost}
+For $0<\epsilon\le1/4$ and $0<\delta\le1/4$, put $\ell=\ln[1/(2\epsilon)]$. The minimum reservoir size for one forward output at trace error $\epsilon$ and whole-reservoir return error $\delta$, optimized over coupling, satisfies
+\begin{equation}
+ \frac{\ell^2}{512\delta^2}
+ \le M_+(1,\epsilon,\delta)
+ \le \left\lceil\max\left\{2\ell,\frac{\ell^2}{4\delta^2}\right\}\right\rceil.
+ \label{eq:singlecost}
+\end{equation}
+In particular, it is $\Theta(\log^2(1/\epsilon)/\delta^2)$ in the small-error regime.
+\end{corollary}

@@ -1,0 +1,63 @@
+\section{Reservoir moments and the one-use lower bound}\label{app:moments}
+
+We first compute the reservoir purity and then control the spread of its eigenvalues to obtain the trace-distance bound in \cref{thm:moments}. All traces in this appendix are normalized on the reservoir space currently under discussion.
+
+Start from the input Pauli $Z$ and conjugate $Z\otimes I$ by the first $M$ collisions. The resulting Hermitian involution $O$ has a Pauli decomposition on the travelling system,
+\begin{equation}
+ O=I\otimes A+\sum_{\alpha=1}^3\sigma_\alpha\otimes B_\alpha,
+ \qquad O^2=I.
+ \label{eq:odecomp}
+\end{equation}
+The reservoir density matrix is $2^{-M}(I+A)$. Conditional expectation onto the reservoir is a unital positive map, so $A$ is a Hermitian contraction; its trace is zero. Equating the system-Pauli coefficients of $O^2=I$ gives
+\begin{align}
+ A^2+\sum_\alpha B_\alpha^2&=I,\label{eq:involution0}\\
+ \{A,B_k\}+i\sum_{i,j}\varepsilon_{ijk}B_iB_j&=0.\label{eq:involution1}
+\end{align}
+
+Append a fresh maximally mixed reservoir cell and apply one partial swap. The identity-on-system coefficient becomes
+\begin{equation}
+ A'=A\otimes I+u\sum_\alpha B_\alpha\otimes\sigma_\alpha.
+ \label{eq:recursionA}
+\end{equation}
+Tracing the new cell in the square gives
+\begin{equation}
+ a'=a+u^2(1-a),\qquad a=\langle A^2\rangle,
+\end{equation}
+starting at $a=0$. This proves~\eqref{eq:purity}.
+
+For the fourth moment, set $X=\sum_\alpha B_\alpha\otimes\sigma_\alpha$ and $D'=uX$, so $A'=A\otimes I+D'$. The terms linear in $D'$ have zero new-cell trace. The cubic term has the helpful sign
+\begin{align}
+ \langle A(D')^3\rangle
+ &=-u^3\sum_k\langle A^2B_k^2+AB_kAB_k\rangle\nonumber\\
+ &=-\frac{u^3}{2}\sum_k\langle\{A,B_k\}^2\rangle\le0.
+ \label{eq:cubicsign}
+\end{align}
+The first equality uses $\operatorname{tr}_2(\sigma_i\sigma_j\sigma_k)=i\varepsilon_{ijk}$ with normalized trace and~\eqref{eq:involution1}. Also
+\begin{equation}
+ \langle A^2(D')^2\rangle=u^2\langle A^2(I-A^2)\rangle\le u^2a,
+\end{equation}
+and Hilbert--Schmidt Cauchy--Schwarz gives
+$\langle AD'AD'\rangle\le\langle A^2(D')^2\rangle$.
+Since $X$ is unitarily equivalent, by swapping tensor factors, to $O-I\otimes A$, its operator norm is at most two. Further, $\langle X^2\rangle=1-a\le1$. Thus $\langle(D')^4\rangle\le4u^4$.
+
+Expanding the fourth power under cyclic trace now yields
+\begin{equation}
+ b'\le b+6u^2a+4u^4,
+ \qquad b=\langle A^4\rangle.
+\end{equation}
+At step $j$, $a_{j-1}\le(j-1)u^2$. Summing from $j=1$ to $M$ gives $b_M\le(3M^2+M)u^4\le4(Mu^2)^2$, proving~\eqref{eq:fourth}.
+
+The return distance is $d_1=\langle|A|\rangle/2$. Because $\norm A_\infty\le1$, $|A|\ge A^2$, giving $d_1\ge a_M/2$. Cauchy--Schwarz gives $d_1\le\sqrt{a_M}/2$. Interpolation between the first, second, and fourth moments gives
+\begin{equation}
+ \langle|A|\rangle\ge\frac{a_M^{3/2}}{\sqrt{b_M}}.
+ \label{eq:holdermoment}
+\end{equation}
+Put $t=Mu^2$. If $d_1\le1/4$, then $a_M\le1/2$. Since $a_M\ge1-e^{-t}$, this implies $t\le\ln2<1$ and $a_M\ge t/2$. Using $b_M\le4t^2$ in~\eqref{eq:holdermoment} gives $d_1\ge\sqrt t/(8\sqrt2)$. The trivial $t=0$ endpoint follows by continuity. This completes~\cref{thm:moments}.
+
+
+\subsection{Reservoir size for one use}
+\begin{proof}[Proof of \Cref{cor:singlecost}]
+The first-output trace error is exactly $q^M/2$, so $M[-\ln(1-u)]\ge\ell$. The first reservoir cell alone has trace change $u/2$; therefore return implies $u\le2\delta\le1/2$. Since $-\ln(1-u)\le2u$, we obtain $Mu\ge\ell/2$. Combine this with~\eqref{eq:returnlower} to get the lower bound. For the upper bound, choose $M$ as displayed and $u=\ell/M$. Then $u\le1/2$, $q^M\le e^{-Mu}=2\epsilon$, and $u\sqrt M/2\le\delta$.
+\end{proof}
+
+At prescribed coupling, first-use accuracy is equivalent to $M\ge\ell/[-\ln(1-u)]$, and Eq.~\eqref{eq:returnlower} requires $M\le128\delta^2/u^2$. Conversely, $Mu\ge\ell$ ensures $q^M/2\le\epsilon$, and $u\sqrt M/2\le\delta$ ensures return. These observations give Eq.~\eqref{eq:prescribed1necess} and its sufficient counterpart.

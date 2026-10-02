@@ -1,0 +1,141 @@
+{
+  "statements": [
+    {
+      "file": "source/statements/cor_exactreturn.tex",
+      "sha256": "c16e0d202e136d27d30417c5a2f3d33e01f60f6d303c1a68d92c842c01f6df82",
+      "unchanged": true
+    },
+    {
+      "file": "source/statements/cor_singlecost.tex",
+      "sha256": "19f0cc26b20fcb3c1e12c50803285575268a7043abefdbbf31e5d7d58e5c9ebd",
+      "unchanged": true
+    },
+    {
+      "file": "source/statements/lem_collective.tex",
+      "sha256": "2cf60ad50236bdf0416d4556e422b55d80db7a9d182bb7407b3e7223069cc27d",
+      "unchanged": true
+    },
+    {
+      "file": "source/statements/lem_relaxation.tex",
+      "sha256": "0615c894e68d0b20c4b248df345aa12a73e4237d48a8c4a04795d7f17ea8f99e",
+      "unchanged": true
+    },
+    {
+      "file": "source/statements/prop_capable.tex",
+      "sha256": "e49e31d8b9c61daae341ab796fc0f731781ed8b3634f3f1e11255cd72ab59f27",
+      "unchanged": true
+    },
+    {
+      "file": "source/statements/prop_entropy-density.tex",
+      "sha256": "018487f19c87dc97e71fae75b786d5e74af8d92eaac0e07e203f3b510e392a56",
+      "unchanged": true
+    },
+    {
+      "file": "source/statements/prop_spectralreturn.tex",
+      "sha256": "d612df50cbb6573eb1748c0f2990e84917d1735db24b01cb4a4fdd0af7dc0e78",
+      "unchanged": true
+    },
+    {
+      "file": "source/statements/thm_dyadic.tex",
+      "sha256": "2acfdc575aa8321c8900ebf9f10cc8d5fc25493732387ca353624077670159ec",
+      "unchanged": true
+    },
+    {
+      "file": "source/statements/thm_entropy.tex",
+      "sha256": "c2fd2906e26ced3d1f09d88c7b3a8408ce479780cfba61b7dbd8e71cb65f5934",
+      "unchanged": true
+    },
+    {
+      "file": "source/statements/thm_forwardoptimal.tex",
+      "sha256": "143b7940f630e8bc119c4edd53a66ca5e8169d4455f735c71b3b1dbb109e738e",
+      "unchanged": true
+    },
+    {
+      "file": "source/statements/thm_limits.tex",
+      "sha256": "66c0ef68ea3adea3ac531571fa2ab9bf6e9492fc8823df986f0068bb9dd52b26",
+      "unchanged": true
+    },
+    {
+      "file": "source/statements/thm_manyupper.tex",
+      "sha256": "7469570a57b744f27d171e297d4f1e4070ba6927516a3d5b63cef0d7e4476979",
+      "unchanged": true
+    },
+    {
+      "file": "source/statements/thm_moments.tex",
+      "sha256": "2fb7e02548aa22498f038b43f534fb79ff9c82e21fd862013cbc6d4009f59b38",
+      "unchanged": true
+    },
+    {
+      "file": "source/statements/thm_singlet.tex",
+      "sha256": "fb7622a439d2a397a54224bd8108f8409f353afa8801f9e054b2ab1537a1efe3",
+      "unchanged": true
+    },
+    {
+      "file": "source/statements/thm_transport.tex",
+      "sha256": "d214e47d61f973b86ecbdbeca39b00f6b5005c33606befe363fef62922f1e756",
+      "unchanged": true
+    }
+  ],
+  "proof_and_audit_appendices": [
+    {
+      "file": "source/appendices/capable.tex",
+      "sha256": "efeebea199890d5d30031f23ef53512dea83363ff3e805ea32b241b6c82926a2",
+      "unchanged": true
+    },
+    {
+      "file": "source/appendices/collective.tex",
+      "sha256": "9f50d868757f746c13dc0be0fdc52641a5bc3170013d037c84723ca33aea1691",
+      "unchanged": true
+    },
+    {
+      "file": "source/appendices/finite.tex",
+      "sha256": "e834d860aec9bb40bbb03937ad72ee7821f6097cd30da0566d545bffb25711ab",
+      "unchanged": true
+    },
+    {
+      "file": "source/appendices/general.tex",
+      "sha256": "0890452c2efecd530f5dd260bd0a6589457a144bc360c0405c84e11facf3ffd3",
+      "unchanged": true
+    },
+    {
+      "file": "source/appendices/moments.tex",
+      "sha256": "44e2a4111f2c401aa6b77c9c07cbddb810d2a8c0b2e8c9929834e72bc2a97faa",
+      "unchanged": true
+    },
+    {
+      "file": "source/appendices/relaxation.tex",
+      "sha256": "ebde20b25ff129dc46cd85dfd11e640b5b84de6b5cb999427301c48cc0f8a7e8",
+      "unchanged": true
+    },
+    {
+      "file": "source/appendices/resources.tex",
+      "sha256": "493469b4823043a585202c7b96bf0e7987abdfdaf473f5c6820d8e4f8647f368",
+      "unchanged": true
+    },
+    {
+      "file": "source/appendices/singlet.tex",
+      "sha256": "1c61aaf4c356bce7f2f7d45185485b262ef94f6f1672dbe67fcd4535162699fb",
+      "unchanged": true
+    },
+    {
+      "file": "source/appendices/transport.tex",
+      "sha256": "9b89e126e416f86df64901cc1f9a07f466c9af8dac5934d3f8b7f729ba263a2e",
+      "unchanged": true
+    }
+  ],
+  "corrected_reference_types": {
+    "cor:exactreturn": [
+      "corollary",
+      "2"
+    ],
+    "prop:spectralreturn": [
+      "proposition",
+      "5"
+    ],
+    "cor:singlecost": [
+      "corollary",
+      "7"
+    ]
+  },
+  "meaning": "Byte comparison checks preservation, not mathematical correctness."
+}

@@ -1,0 +1,33 @@
+# Private correspondence and local bundle copies: never publish
+private/
+*.zip
+*.eml
+
+# LaTeX build output (see build.sh)
+_build/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+!verification/*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Lean / Lake
+lean/.lake/
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+code/checks.json
+code/extended_checks.json
+
+# Editors and OS
+.DS_Store
+.vscode/
+.idea/
+*~

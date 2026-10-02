@@ -1,0 +1,148 @@
+{
+  "purpose": "Editorial preservation check against supplied source bundle",
+  "theorem_statements": [
+    {
+      "label": "thm:entropy",
+      "title": "Entropy and return",
+      "paper_number": "1",
+      "paper_page": "2",
+      "source": "source/statements/thm_entropy.tex",
+      "mathematical_tokens_preserved": true,
+      "comparison": "Whitespace, alignment, scalable delimiters, labels, and display-line breaks normalized. This comparison is not a proof check."
+    },
+    {
+      "label": "cor:exactreturn",
+      "title": "Exact return",
+      "paper_number": "2",
+      "paper_page": "2",
+      "source": "source/statements/cor_exactreturn.tex",
+      "mathematical_tokens_preserved": true,
+      "comparison": "Whitespace, alignment, scalable delimiters, labels, and display-line breaks normalized. This comparison is not a proof check."
+    },
+    {
+      "label": "thm:dyadic",
+      "title": "Prefix-controlled erasure",
+      "paper_number": "4",
+      "paper_page": "3",
+      "source": "source/statements/thm_dyadic.tex",
+      "mathematical_tokens_preserved": true,
+      "comparison": "Whitespace, alignment, scalable delimiters, labels, and display-line breaks normalized. This comparison is not a proof check."
+    },
+    {
+      "label": "thm:forwardoptimal",
+      "title": "Optimal forward memory",
+      "paper_number": "3",
+      "paper_page": "3",
+      "source": "source/statements/thm_forwardoptimal.tex",
+      "mathematical_tokens_preserved": true,
+      "comparison": "Whitespace, alignment, scalable delimiters, labels, and display-line breaks normalized. This comparison is not a proof check."
+    },
+    {
+      "label": "thm:moments",
+      "title": "One-use purity and trace bounds",
+      "paper_number": "6",
+      "paper_page": "4",
+      "source": "source/statements/thm_moments.tex",
+      "mathematical_tokens_preserved": true,
+      "comparison": "Whitespace, alignment, scalable delimiters, labels, and display-line breaks normalized. This comparison is not a proof check."
+    },
+    {
+      "label": "cor:singlecost",
+      "title": "Sharp single-use size",
+      "paper_number": "7",
+      "paper_page": "4",
+      "source": "source/statements/cor_singlecost.tex",
+      "mathematical_tokens_preserved": true,
+      "comparison": "Whitespace, alignment, scalable delimiters, labels, and display-line breaks normalized. This comparison is not a proof check."
+    },
+    {
+      "label": "thm:transport",
+      "title": "Excitation transport and return",
+      "paper_number": "8",
+      "paper_page": "5",
+      "source": "source/statements/thm_transport.tex",
+      "mathematical_tokens_preserved": true,
+      "comparison": "Whitespace, alignment, scalable delimiters, labels, and display-line breaks normalized. This comparison is not a proof check."
+    },
+    {
+      "label": "lem:collective",
+      "title": "Marginal relaxation in weak coupling",
+      "paper_number": "9",
+      "paper_page": "6",
+      "source": "source/statements/lem_collective.tex",
+      "mathematical_tokens_preserved": true,
+      "comparison": "Whitespace, alignment, scalable delimiters, labels, and display-line breaks normalized. This comparison is not a proof check."
+    },
+    {
+      "label": "thm:manyupper",
+      "title": "Many-use upper bounds",
+      "paper_number": "10",
+      "paper_page": "6",
+      "source": "source/statements/thm_manyupper.tex",
+      "mathematical_tokens_preserved": true,
+      "comparison": "Whitespace, alignment, scalable delimiters, labels, and display-line breaks normalized. This comparison is not a proof check."
+    },
+    {
+      "label": "thm:singlet",
+      "title": "Singlet test",
+      "paper_number": "11",
+      "paper_page": "6",
+      "source": "source/statements/thm_singlet.tex",
+      "mathematical_tokens_preserved": true,
+      "comparison": "Whitespace, alignment, scalable delimiters, labels, and display-line breaks normalized. This comparison is not a proof check."
+    },
+    {
+      "label": "prop:spectralreturn",
+      "title": "Spectral endpoint converse",
+      "paper_number": "5",
+      "paper_page": "3",
+      "source": "source/statements/prop_spectralreturn.tex",
+      "mathematical_tokens_preserved": true,
+      "comparison": "Whitespace, alignment, scalable delimiters, labels, and display-line breaks normalized. This comparison is not a proof check."
+    },
+    {
+      "label": "lem:relaxation",
+      "title": "Exact finite-block relaxation",
+      "paper_number": "12",
+      "paper_page": "12",
+      "source": "source/statements/lem_relaxation.tex",
+      "mathematical_tokens_preserved": true,
+      "comparison": "Whitespace, alignment, scalable delimiters, labels, and display-line breaks normalized. This comparison is not a proof check."
+    },
+    {
+      "label": "thm:limits",
+      "title": "Exact iterated limits",
+      "paper_number": "13",
+      "paper_page": "13",
+      "source": "source/statements/thm_limits.tex",
+      "mathematical_tokens_preserved": true,
+      "comparison": "Whitespace, alignment, scalable delimiters, labels, and display-line breaks normalized. This comparison is not a proof check."
+    },
+    {
+      "label": "prop:capable",
+      "title": "Product initializer",
+      "paper_number": "14",
+      "paper_page": "14",
+      "source": "source/statements/prop_capable.tex",
+      "mathematical_tokens_preserved": true,
+      "comparison": "Whitespace, alignment, scalable delimiters, labels, and display-line breaks normalized. This comparison is not a proof check."
+    },
+    {
+      "label": "prop:entropy-density",
+      "title": "Different entropy densities",
+      "paper_number": "15",
+      "paper_page": "15",
+      "source": "source/statements/prop_entropy-density.tex",
+      "mathematical_tokens_preserved": true,
+      "comparison": "Whitespace, alignment, scalable delimiters, labels, and display-line breaks normalized. This comparison is not a proof check."
+    }
+  ],
+  "flagged_changes": [
+    {
+      "location": "Appendix F, orthogonal-pure-state one-use aside",
+      "change": "Restricts the ratio-one example to strict partial swaps; states that full swap has numerator and denominator zero and hence an undefined ratio.",
+      "effect": "No change to the iterated-limit theorem, whose hypothesis is 0 < F(a,b) < 1."
+    }
+  ],
+  "semantic_review": "The 15 theorem/corollary/proposition/lemma conclusions and assumptions are retained. Main-text proof sketches and full-proof locations were reorganized."
+}

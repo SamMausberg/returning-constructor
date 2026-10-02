@@ -1,0 +1,438 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\input{preamble.tex}
+\usepackage[numbers,sort&compress]{natbib}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\hypersetup{pdftitle={Statement-only referee packet: Memory return in quantum machines},pdfauthor={Samuel Mausberg}}
+\begin{document}
+\begin{center}
+{\Large Statement-only referee packet}\\[5pt]
+{\large Memory return in quantum machines}\\[5pt]
+Samuel Mausberg \qquad October 2, 2026
+\end{center}
+
+This packet collects the mathematical statements and their hypotheses, without proofs, proof sketches, or numerical evidence. The source locators distinguish definitions under examination from prior mechanisms and imported inequalities. A cited source need not contain the theorem stated here. The theorem numbers agree with the accompanying paper.
+
+\section*{Conventions}
+A closed sequential device applies the same unitary to each fresh input qubit and its retained memory, then releases the qubit. The memory contains every accessible clock, buffer, random seed, and workspace. There are no resets or discarded internal registers. Initial memory is independent of the input product state. Put $p=\ket0\bra0$, $\tau=I/2$, $D=2^m$, and
+\[
+T(\rho,\sigma)=\tfrac12\|\rho-\sigma\|_1,
+\qquad F(\rho,\sigma)=\left(\operatorname{Tr}\sqrt{\sqrt\rho\sigma\sqrt\rho}\right)^2.
+\]
+Entropy and $h_2$ use base-two logarithms; $\ln$ is natural. Write $\Omega_n$ for all outputs, $\rho_j$ for output $j$, and $\sigma_j$ for retained memory. Marginal accuracy is $\max_{j\le n}T(\rho_j,b)\le\epsilon$; joint accuracy is $T(\Omega_n,b^{\otimes n})\le\epsilon$. Prefix return is $\max_{j\le n}T(\sigma_j,\sigma_0)\le\delta$, whereas endpoint return checks only $j=n$. A superscript $\mathrm{ret}$ on a memory cost includes prefix return. Exact pure output marginals already fix their joint state.
+
+The coherent homogenizer starts in $a^{\otimes n}\otimes b^{\otimes M}$. Every input visits cells $1,\ldots,M$ through $U_\eta=\cos\eta\,I+i\sin\eta\,\mathsf S$, where $\mathsf S$ swaps the two qubits. Put $u=\sin^2\eta$ and $q=1-u$. The channel $\Phi_{b,k}$ sweeps a fresh ancilla in $b$ through a $k$-qubit block and traces out that ancilla.
+
+For the limit statements, define
+\[
+ R_{M,n}=\frac{1-F(\rho_{M,n},b)}{F(\sigma_{M,n},b^{\otimes M})}.
+\]
+The single-parameter limits referenced there are $\lim_M R_{M,n}=0$ at fixed $n$ and $\lim_n R_{M,n}=(1-f)f^{-M}$ at fixed $M$. For the capability statement, $\mathcal O_p$ is the first-output channel and
+\[
+V_e=\{\omega:F(\mathcal O_p(\omega),\tau)\ge1-e\},\qquad
+S_e(n)=\inf_{\omega\in V_e}F(\omega,\Phi_{p,M}^{n}(\omega)).
+\]
+
+\newpage
+\section*{Theorems and corollaries}
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\emph{Hypotheses.} Closed finite memory, independent input state $\tau^{\otimes n}$, $D\ge2$, $m=\log_2D$, and endpoint return error $0\le\delta\le1/2$. Initial memory may be mixed. The initial state is a tensor product of inputs and memory.
+
+\begin{theorem}[Entropy and return]
+Let a closed device receive $\tau^{\otimes n}$ and have any initial memory state $\sigma_0$ on $D\ge2$ dimensions. If $T(\sigma_n,\sigma_0)\le\delta\le1/2$, then
+\begin{equation}
+ \begin{aligned}
+ n-S(\Omega_n)
+ &= S(\sigma_n)-S(\sigma_0)\\[-2pt]
+ &\quad-I(S_1\cdots S_n:R)\\
+ &\le\min\bigl\{m-S(\sigma_0),\\[-2pt]
+ &\qquad\quad\ha(\delta)+\delta\log_2(D-1)\bigr\}.
+ \end{aligned}
+\end{equation}
+Under marginal service with $0\le\epsilon\le1/2$,
+\begin{equation}
+ n[1-\ha(\epsilon)]\le\ha(\delta)+\delta\log_2(D-1).
+\end{equation}
+Under joint service with $0\le\epsilon\le1/2$, $S(\Omega_n)$ in~(paper Eq.~6) can be replaced by the upper bound
+\begin{equation}
+ s_{\rm joint}(n,\epsilon)=\ha(\epsilon)+\epsilon\log_2(2^n-1).
+\end{equation}
+\end{theorem}
+
+\noindent\emph{Source locators and role.} Audenaert~\cite{audenaert}, Theorem~1 (entropy continuity). The closed-unitary entropy balance is part of the statement to be checked.
+\end{minipage}
+\par
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\emph{Hypotheses.} The same closed model with independent $\tau^{\otimes n}$ inputs, arbitrary finite $D\ge1$, and exact endpoint return $\sigma_n=\sigma_0$.
+
+\begin{corollary}[Exact return]
+If $\sigma_n=\sigma_0$, then $\Omega_n=\tau^{\otimes n}$ and the final output--memory mutual information is zero. No closed device can purify maximally mixed inputs while returning its memory exactly, for any initial memory state.
+\end{corollary}
+
+\noindent\emph{Source locators and role.} The preceding entropy statement. No additional source-dependent assumption.
+\end{minipage}
+\par
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\emph{Hypotheses.} $n\ge1$ pure-zero inputs, $m\ge0$ memory qubits, arbitrary mixed initializer independent of the inputs, and one fixed sequential unitary. The target joint state is $\tau^{\otimes n}$.
+
+\begin{theorem}[Optimal forward memory]
+With arbitrary mixed initialization, the least joint trace error obtainable from $n$ pure inputs and $m$ memory qubits is
+\begin{equation}
+ E_+^*(n,m)=\max\{0,1-2^{2m-n}\}.
+\end{equation}
+A fixed sequential unitary attains this error and returns the memory exactly at every prefix. Exact joint service therefore needs $\lceil n/2\rceil$ memory qubits. Exact marginal service needs only one memory qubit and can continue indefinitely.
+\end{theorem}
+
+\noindent\emph{Source locators and role.} Boes et al.~\cite{boes}, Lemma~1 and Sec.~III.A (dephasing mechanism); Lie--Jeong~\cite{lie} (catalytic correlations); Douglas~\cite{douglas}, Proposition~7.2 (counted streaming). These sources identify antecedents of the construction.
+\end{minipage}
+\par
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\emph{Hypotheses.} $n\ge1$ independent maximally mixed inputs, an $m$-qubit memory with $m\ge2n$, freely chosen mixed initializer, and fixed cyclic-swap unitary. The cost uses return after every prefix.
+
+\begin{theorem}[Prefix-controlled erasure]
+Let $n\ge1$, $m\ge2n$, and $k=m-n$. There is an $m$-qubit initializer and one fixed cyclic-swap unitary whose first $n$ outputs are exactly $p^{\otimes n}$ and for which
+\begin{equation}
+ T(\sigma_t,\sigma_0)=\frac{t}{m-n+2},\qquad 1\le t\le n.
+\end{equation}
+In particular, for $0<\delta\le1/4$,
+\begin{equation}
+ \frac{n-\ha(\delta)}{\delta}
+ \le m_-^{\rm ret}(n,0,\delta)
+ \le \left\lceil\frac n\delta\right\rceil+n-2.
+\end{equation}
+Both marginal and joint output requirements have this exact-output cost bound.
+\end{theorem}
+
+\noindent\emph{Source locators and role.} Ng et al.~\cite{ng}, Eqs.~(2)--(3) (endpoint catalyst). The prefix-return equality is a statement of the present paper.
+\end{minipage}
+\par
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\emph{Hypotheses.} Independent $\tau^{\otimes n}$ inputs, arbitrary initial $m$-qubit memory, exact joint output $p^{\otimes n}$, and endpoint return tolerance $\delta>0$. A global closed unitary is allowed, so the bound also covers sequential devices.
+
+\begin{proposition}[Spectral endpoint converse]
+Any closed $m$-qubit memory that exactly purifies $n$ maximally mixed inputs and returns within $\delta>0$ satisfies
+\begin{equation}
+ \delta\ge\frac1{\lceil m/n\rceil+1/(2^n-1)}.
+\end{equation}
+Consequently, for the prefix-return optimum,
+\begin{equation}
+ m_-^{\rm ret}(n,0,\delta)\ge
+ n\left(\left\lceil\frac1\delta-\frac1{2^n-1}\right\rceil-1\right)+1.
+\end{equation}
+Together with~(paper Eq.~13), this proves $m_-^{\rm ret}(n,0,\delta)=n/\delta+O(n)$ with constants uniform for $0<\delta\le1/4$. Within this tolerance range, for $n=1$ the exact optimum is $\lceil1/\delta\rceil-1$.
+\end{proposition}
+
+\noindent\emph{Source locators and role.} Ng et al.~\cite{ng}, Eqs.~(2)--(3) (endpoint catalyst optimum).
+\end{minipage}
+\par
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\emph{Hypotheses.} Forward coherent homogenizer: $p^{\otimes n}$ inputs, initial reservoir $\tau^{\otimes M}$, $M\ge1$, $0<\eta\le\pi/2$, and $u=\sin^2\eta$. This statement uses only the first visit.
+
+\begin{theorem}[One-use purity and trace bounds]
+For forward homogenization, define $A_M=2^M\sigma_{M,1}-I$ and let $\langle X\rangle=2^{-M}\Tr X$. Then $A_M$ is a Hermitian contraction and
+\begin{align}
+ a_M:=\langle A_M^2\rangle&=1-(1-u^2)^M,\\
+ \langle A_M^4\rangle&\le(3M^2+M)u^4.
+\end{align}
+Writing $d_1=T(\sigma_{M,1},\tau^{\otimes M})$, one has
+\begin{equation}
+ \frac{a_M}{2}\le d_1\le\frac{\sqrt{a_M}}2\le\frac{u\sqrt M}{2}.
+\end{equation}
+If $d_1\le1/4$, then also
+\begin{equation}
+ d_1\ge\frac{u\sqrt M}{8\sqrt2},\qquad Mu^2\le128d_1^2.
+\end{equation}
+\end{theorem}
+
+\noindent\emph{Source locators and role.} Ziman et al.~\cite{ziman}, partial-swap homogenizer definition; PRL~\cite{prl}, homogenizer model. The moment identities and constants are statements of the present paper.
+\end{minipage}
+\par
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\emph{Hypotheses.} The same forward homogenizer at one visit; coupling may be optimized. The two tolerances satisfy $0<\epsilon,\delta\le1/4$, and reservoir size is an integer.
+
+\begin{corollary}[Sharp single-use size]
+For $0<\epsilon\le1/4$ and $0<\delta\le1/4$, put $\ell=\ln[1/(2\epsilon)]$. The minimum reservoir size for one forward output at trace error $\epsilon$ and whole-reservoir return error $\delta$, optimized over coupling, satisfies
+\begin{equation}
+ \frac{\ell^2}{512\delta^2}
+ \le M_+(1,\epsilon,\delta)
+ \le \left\lceil\max\left\{2\ell,\frac{\ell^2}{4\delta^2}\right\}\right\rceil.
+\end{equation}
+In particular, it is $\Theta(\log^2(1/\epsilon)/\delta^2)$ in the small-error regime.
+\end{corollary}
+
+\noindent\emph{Source locators and role.} The moment statement and the original partial-swap model~\cite{ziman}. No source supplies the displayed size constants.
+\end{minipage}
+\par
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\emph{Hypotheses.} Arbitrary excitation-conserving closed unitary, initial state $p^{\otimes n}\otimes\tau^{\otimes M}$, unconditional output marginals within $\epsilon<1/2$ of $\tau$, and endpoint return within $\delta>0$.
+
+\begin{theorem}[Excitation transport and return]
+Consider any excitation-conserving closed unitary on $n$ pure-zero inputs and a reservoir initially in $\tau^{\otimes M}$. Suppose its output marginals have trace error at most $\epsilon<1/2$ from $\tau$, and its final reservoir return error is at most $\delta>0$. Let $b=1/2-\epsilon$. Then
+\begin{equation}
+ M\ge
+ \frac{\positive{bn/(2\delta)-n-2}^{\,2}}{2\ln(4/b)}.
+\end{equation}
+For fixed $\epsilon<1/2$ and sufficiently small $\delta$, this is $\Omega_\epsilon(n^2/\delta^2)$ as $n$ grows. It needs only endpoint return and no output independence.
+\end{theorem}
+
+\noindent\emph{Source locators and role.} The excitation-conserving partial swap is defined in Refs.~\cite{ziman,scarani}. The bound is stated for the larger unitary class specified here.
+\end{minipage}
+\par
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\emph{Hypotheses.} Forward homogenizer with $n,M\ge1$, product initializer $\tau^{\otimes M}$, pure-zero inputs, and prescribed $0<\eta\le3/(8n^3)$.
+
+\begin{lemma}[Marginal relaxation in weak coupling]
+If $0<\eta\le3/(8n^3)$, then
+\begin{equation}
+ \max_{j\le n}T(\rho_{M,j},\tau)
+ \le\tfrac34\exp(-M\eta^2/2).
+\end{equation}
+\end{lemma}
+
+\noindent\emph{Source locators and role.} Giovannetti--Palma~\cite{gp}, Eqs.~(4)--(7), and Ref.~\cite{cascade}, Eqs.~(5)--(8), for the column representation. The weak-coupling inequality is a statement of the present paper.
+\end{minipage}
+\par
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\emph{Hypotheses.} The same forward homogenizer, $n\ge1$, $0<\epsilon,\delta\le1/4$, with coupling chosen according to one of the two designs. Return is required at every prefix; output accuracy is marginal.
+
+\begin{theorem}[Many-use upper bounds]
+Let $0<\epsilon,\delta\le1/4$, $L_0=\ln(1/\epsilon)$, $L=\ln(2/\epsilon)$, and $r=\min\{\delta,\epsilon/2\}$. Either of the following independent designs gives all marginal output errors at most $\epsilon$ and every prefix return error at most $\delta$:
+\begin{equation}
+ \begin{gathered}
+ M\ge\max\{2L_0,n^2L_0^2/(4r^2)\},\\
+ \sin^2\eta=L_0/M;
+ \end{gathered}
+\end{equation}
+\begin{equation}
+ \begin{gathered}
+ M\ge\max\{16n^6L,n^2L^2/\delta^2\},\\
+ \eta^2=2L/M.
+ \end{gathered}
+\end{equation}
+The better of these two bounds may be used, after rounding $M$ upward.
+\end{theorem}
+
+\noindent\emph{Source locators and role.} Violaris--Marletto~\cite{vm}, Sec.~3.3, and Beever et al.~\cite{beever}, Sec.~4 (finite-horizon resource formulations). The numerical bounds are those stated here.
+\end{minipage}
+\par
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\emph{Hypotheses.} Forward coherent homogenizer, initial reservoir $\tau^{\otimes M}$, pure-zero inputs, $M\ge1$, and fixed $0<\eta\le\pi/2$. The obstruction uses at least two outputs and includes return after the first use.
+
+\begin{theorem}[Singlet test]
+For two forward outputs, let $P_-=(I-\SW_{12})/2$. Then
+\begin{equation}
+ \Tr(P_-\Omega_{M,2})=\frac{1-(1-u^2)^M}{4}=\frac{a_M}{4}.
+\end{equation}
+If $n\ge2$, joint output error is at most $\epsilon$, and prefix return error is at most $\delta$, then
+\begin{equation}
+ \epsilon+\delta/2\ge1/4.
+\end{equation}
+\end{theorem}
+
+\noindent\emph{Source locators and role.} The coherent partial-swap definition~\cite{ziman} and the column-channel representation~\cite{gp,cascade}. The singlet identity is a statement of the present paper.
+\end{minipage}
+\par
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\emph{Hypotheses.} A finite block of $k\ge1$ qubits, arbitrary possibly correlated block operator $X$, a fresh qubit in any state $b$ for each sweep, and fixed $0<\eta\le\pi/2$.
+
+\begin{lemma}[Exact finite-block relaxation]
+For every finite $k$, qubit state $b$, and $0<\eta\le\pi/2$,
+\begin{equation}
+ \Phi_{b,k}^{\,L}(X)\longrightarrow b^{\otimes k}\Tr X
+\end{equation}
+uniformly on bounded sets of operators. In particular, convergence is uniform over density matrices.
+\end{lemma}
+
+\noindent\emph{Source locators and role.} Giovannetti--Palma~\cite{gp}, Eqs.~(4)--(7); Ref.~\cite{cascade}, Eqs.~(5)--(8); Ziman et al.~\cite{ziman}, homogenizer model. No reservoir factorization assumption.
+\end{minipage}
+\par
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\emph{Hypotheses.} Product input and reservoir initializers, fixed coupling $0<\eta\le\pi/2$, and qubit states satisfying $0<f=F(a,b)<1$. The numerator is current-output infidelity, with squared Uhlmann fidelity in both places.
+
+\begin{theorem}[Exact iterated limits]
+Let $0<F(a,b)=f<1$ and fix $0<\eta\le\pi/2$. Then the ratio in~(paper Eq.~F2) obeys~(paper Eq.~F3), and
+\begin{equation}
+ \lim_{n\to\infty}\lim_{M\to\infty}R_{M,n}=0,
+ \qquad
+ \lim_{M\to\infty}\lim_{n\to\infty}R_{M,n}=+\infty.
+\end{equation}
+\end{theorem}
+
+\noindent\emph{Source locators and role.} Violaris--Marletto~\cite{vm}, Eqs.~(8)--(11), and thesis~\cite{thesis}, Eqs.~(5.1)--(5.4), for the ratio and orders of limits. The Letter uses a different numerator and set infimum.
+\end{minipage}
+\par
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\emph{Hypotheses.} $M\ge2$, strict partial swap $q=\cos^2\eta\in(0,1)$, forward task $p\to\tau$, first-use tolerance $e_M=(1-\sqrt{1-q^{2M}})/2$, and capability defined with squared fidelity.
+
+\begin{proposition}[Product initializer]
+For every strict partial swap and $M\ge2$, there is a product state $\omega\in V_{e_M}$ with $F(\omega,p^{\otimes M})=0$. Hence $S_{e_M}(n)\to0$ and $e_M/S_{e_M}(n)\to+\infty$.
+\end{proposition}
+
+\noindent\emph{Source locators and role.} PRL / arXiv:2009.14649v2~\cite{prl}, Eqs.~(3)--(7), (12)--(13). These are the definitions being tested, rather than a restricted designated-initializer condition.
+\end{minipage}
+\par
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\emph{Hypotheses.} States $a,b$ on the same finite-dimensional one-site Hilbert space, $S(a)\ne S(b)$, independent product inputs $a^{\otimes n}$, and fixed finite memory dimension $D$. The initial memory is independent of those inputs and may vary with the horizon.
+
+\begin{proposition}[Different entropy densities]
+For any finite-dimensional one-site states $a,b$ with $S(a)\ne S(b)$, any fixed finite memory dimension $D$, and any initial memory state independent of $a^{\otimes n}$, the joint trace error from $b^{\otimes n}$ tends to one as $n\to\infty$. The conclusion even allows an arbitrary global unitary at each horizon.
+\end{proposition}
+
+\noindent\emph{Source locators and role.} Ryb\'{a}r--Ziman~\cite{rybar}, discussion of repeatability and finite-memory entropy constraints. The strong joint trace-error conclusion is the statement to be checked.
+\end{minipage}
+\par
+
+\section*{Additional statements used in the paper}
+
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\subsection*{A. Circuit exchange and reservoir-fidelity floor}
+For the coherent grid with independent product initializers, all $M,n\ge1$, and fixed partial swap,
+\[
+ \Omega_{M,n}=\Phi_{b,n}^{M}(a^{\otimes n}),\qquad
+ \sigma_{M,n}=\Phi_{a,M}^{n}(b^{\otimes M}),\qquad
+ F(\sigma_{M,n},b^{\otimes M})\ge F(a,b)^n.
+\]
+The grid exchange holds for arbitrary two-wire gates when only disjoint-wire pairs are reordered. Source locators: Ref.~\cite{gp}, Eqs.~(4)--(7), and Ref.~\cite{cascade}, Eqs.~(5)--(8). The fidelity floor is the paper's stated consequence for the product boundary model.
+
+
+\end{minipage}
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\subsection*{B. Pure initial memory}
+For $n$ independent maximally mixed inputs, pure initial memory of any finite dimension, and an arbitrary global closed unitary,
+\[
+ F(\sigma_n,\sigma_0)\le2^{-n}+e_{\rm all},\qquad
+ e_{\rm all}=1-\bra{0^n}\Omega_n\ket{0^n}.
+\]
+Under joint error $\epsilon$, $e_{\rm all}\le\epsilon$; under marginal error $\epsilon$, $e_{\rm all}\le n\epsilon$. At one use, return requires $\delta\ge1/2-\epsilon$. For the reverse homogenizer this tradeoff is exact:
+\[
+ T(\rho_{M,1},p)=q^M/2,\qquad
+ T(\sigma_{M,1},p^{\otimes M})=(1-q^M)/2.
+\]
+Source dependence: the closed-unitary and homogenizer definitions above; no stronger general-initializer conclusion is assumed.
+
+
+\end{minipage}
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\subsection*{C. Prescribed-coupling intervals}
+For one forward homogenizer use and $0<\epsilon,\delta\le1/4$, put $\ell=\ln[1/(2\epsilon)]$. At a prescribed $u=\sin^2\eta$, necessary conditions are
+\[
+ \ell/[-\ln(1-u)]\le M\le128\delta^2/u^2,
+\]
+and sufficient conditions are $\ell/u\le M\le4\delta^2/u^2$, with integer feasibility understood. For $n$ marginal uses, $L=\ln(2/\epsilon)$, and $0<\eta\le3/(8n^3)$, the conditions
+\[
+ 2L/\eta^2\le M\le4\delta^2/(n^2\sin^4\eta)
+\]
+are sufficient for prefix return and output accuracy. The one-use and transport inequalities remain necessary. Sources: the model definitions in Ref.~\cite{ziman}; finite-horizon formulations in Refs.~\cite{vm,beever}. The constants belong to this paper's statements.
+
+
+\end{minipage}
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\subsection*{D. The fixed-horizon collective limit}
+For the forward homogenizer at fixed $n$, set $\eta=M^{-\alpha}$ with $1/3<\alpha<1/2$. Then
+\[
+ \Omega_{M,n}\longrightarrow\frac{\Pi_{\rm sym}}{n+1},\qquad
+ \max_{j\le n}T(\sigma_{M,j},\tau^{\otimes M})\longrightarrow0.
+\]
+Here $\Pi_{\rm sym}$ projects onto the symmetric $n$-qubit subspace. The limiting output marginals are $\tau$, while its joint trace distance from $\tau^{\otimes n}$ is $1-(n+1)/2^n$. Source dependence: the collision-grid representation~\cite{gp,cascade}; this is a fixed-$n$ statement.
+
+
+\end{minipage}
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\subsection*{E. Approximate reverse outputs and prefix return}
+For arbitrary mixed initial memory and $0\le\epsilon<1/2$, a device exists with
+\[
+ m\le1+\max\{2n,\lceil wn/\delta\rceil+n-2\},
+\]
+where $w=1-\epsilon$ for joint accuracy and $w=1-2\epsilon$ for marginal accuracy, for positive small $\delta$. In particular,
+\[
+ \lim_{\delta\downarrow0}\limsup_{n\to\infty}
+ \frac{\delta m_-^{\mathrm{ret,joint}}(n,\epsilon,\delta)}n=1-\epsilon.
+\]
+The corresponding marginal coefficient lies between $1-h_2(\epsilon)$ and $1-2\epsilon$. Source locators: Audenaert~\cite{audenaert}, Theorem~1; Ng et al.~\cite{ng}, Eqs.~(2)--(3), for related endpoint catalysis. The statements here require prefix return.
+
+
+\end{minipage}
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\subsection*{F. Output-only optima}
+With return unrestricted and arbitrary mixed initial memory, the optimum joint trace errors are
+\[
+ E_+^*(n,m)=\max\{0,1-2^{2m-n}\},\qquad
+ E_-^*(n,m)=\max\{0,1-2^{m-n}\}.
+\]
+They also hold for squared-fidelity infidelity. With pure initialization, exact joint service in either direction requires $n$ memory qubits. Exact marginal forward service requires one qubit. At fixed $0<\epsilon<1/2$, reverse marginal service has cost
+\[
+ m_-^{\mathrm{marg}}(n,\epsilon)=n[1-h_2(\epsilon)]+o(n).
+\]
+Source locators: Ryb\'{a}r--Ziman~\cite{rybar} for repeatability, Boes et al.~\cite{boes}, Lemma~1, for catalytic dephasing, and Schulman--Vazirani~\cite{sv} for reversible compression.
+
+For the homogenizer with coupling optimized and return unrestricted, $M=n$ attains exact joint service by full swap. Necessary marginal bounds are $M\ge n(1-2\epsilon)$ forward and $M\ge n[1-h_2(\epsilon)]$ reverse. Necessary joint bounds are
+\[
+ M\ge n-\sqrt{8n\ln[2/(1-\epsilon)]},\qquad
+ M\ge\lceil n+\log_2(1-\epsilon)\rceil,
+\]
+respectively, for $0\le\epsilon<1$. At vanishing error both directions have memory rate one. Strict partial swaps have positive finite-$M$ first-use trace error $q^M/2$. Source: partial-swap definitions in Refs.~\cite{ziman,scarani}; finite-horizon resource questions in Refs.~\cite{vm,beever}.
+
+
+\end{minipage}
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\subsection*{G. Capability variants and limit boundaries}
+For $q\ge1/2$, the initializer $(I-p^{\otimes M})/(2^M-1)$ is in $V_{e_M}$, has zero overlap with $p^{\otimes M}$, and has trace distance $2^{-M}$ from $\tau^{\otimes M}$. In the reverse direction, the capability-set infimum tends to $2^{-M}$. If the infimum is replaced by the designated product initializer while retaining the first-use numerator, the forward and reverse fixed-$M$ long-use ratios equal
+\[
+ 2^M\frac{1-\sqrt{1-q^{2M}}}{2},\qquad \frac{(2q)^M}{2}.
+\]
+Their reservoir-size limits separate for $1/2<q<1/\sqrt2$. The current outputs still tend to the incoming state in both directions. For orthogonal pure endpoints and strict partial swaps, the one-use current-error ratio is one; at full swap it is undefined. Source locators: PRL~\cite{prl}, Eqs.~(3)--(7), and supplement~\cite{supp}, Eqs.~(9)--(10).
+
+
+\end{minipage}
+\par\medskip
+\noindent\begin{minipage}{\linewidth}
+\subsection*{H. Invariant marginal capability}
+For independent prescribed inputs, define $V_\epsilon=\{\sigma:T(\mathcal O_a(\sigma),b)\le\epsilon\}$ and $C_\epsilon=\bigcap_{j\ge0}\Phi_a^{-j}(V_\epsilon)$. Then $C_\epsilon$ is exactly the set of memory states serving every horizon at marginal tolerance $\epsilon$, and $\Phi_a(C_\epsilon)\subseteq C_\epsilon$. The inverse notation means set preimage. Source locators: Violaris--Marletto~\cite{vm}, Sec.~2.1; thesis~\cite{thesis}, Secs.~3.3 and 5.3. Foundational interpretation: Deutsch~\cite{deutsch}, Secs.~1.1 and 3.14, and the introductory definitions in Refs.~\cite{information,thermo}.
+
+
+\end{minipage}
+\section*{Version-specific source statements to check}
+The PRL v1 preprint~\cite{prlv1}, p.~2, uses a supremum and one two-variable limit sign; p.~3 takes uses first in its homogenizer statements. Version~2 / the Letter~\cite{prl}, Eqs.~(3)--(7), (12)--(13), uses squared fidelity, a first-use numerator, an infimum, and uses first. The publisher supplement~\cite{supp}, Eqs.~(9)--(10), (17)--(25), substitutes the designated initializer, uses $S(n)\approx S(1)^n$, and invokes weak-coupling/product-reservoir approximations. Ref.~\cite{vm}, Eqs.~(8)--(13), uses a current-error numerator; its preprint leaves the joint limit unspecified, while the published Eq.~(11) takes reservoir size first. The thesis~\cite{thesis}, Eq.~(5.4), takes reservoir size first. Ref.~\cite{beever} treats finite-horizon marginals and individual cells, with Bloch distance $2T$. Ref.~\cite{tests}, Sec.~3.2, introduces no replacement limit theorem.
+
+\makeatletter\immediate\write\@auxout{\string\citation{apsrev42Control}}\makeatother
+\bibliographystyle{apsrev4-2}
+\bibliography{references}
+\end{document}

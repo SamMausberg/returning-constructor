@@ -1,0 +1,10 @@
+name = "GridExchange"
+defaultTargets = ["GridExchange"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.34.1"
+
+[[lean_lib]]
+name = "GridExchange"

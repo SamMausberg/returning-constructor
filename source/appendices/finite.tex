@@ -1,0 +1,18 @@
+\section{Uniform joint service with finite memory}\label{app:finite}
+
+\begin{proposition}[Different entropy densities]\label{prop:entropy-density}
+For any finite-dimensional one-site states $a,b$ with $S(a)\ne S(b)$, any fixed finite memory dimension $D$, and any initial memory state independent of $a^{\otimes n}$, the joint trace error from $b^{\otimes n}$ tends to one as $n\to\infty$. The conclusion even allows an arbitrary global unitary at each horizon.
+\end{proposition}
+\begin{proof}
+Fix $\gamma>0$ smaller than half the entropy gap. The spectral typical subspace of $a^{\otimes n}$ has probability $1-o(1)$, dimension at most $2^{n(S(a)+\gamma)}$, and typical eigenvalues at most $2^{-n(S(a)-\gamma)}$. These facts follow by applying the law of large numbers to the logarithms of the eigenvalues of $a$; similarly for $b$.
+
+If $S(b)>S(a)$, evolve the input typical subspace tensored with the entire memory. Its rank is at most $D2^{n(S(a)+\gamma)}$. The support of its reduced output has rank at most $D^2 2^{n(S(a)+\gamma)}$ and captures output probability $1-o(1)$. Its probability under $b^{\otimes n}$ is at most the atypical probability plus its rank times the largest typical target eigenvalue, hence at most
+\[
+ o(1)+D^2 2^{-n(S(b)-S(a)-2\gamma)}=o(1).
+\]
+A support measurement distinguishes the actual and ideal outputs with advantage tending to one.
+
+If $S(a)>S(b)$, lift a target typical-subspace projector to output plus memory. Its rank is at most $D2^{n(S(b)+\gamma)}$. Pull it back through the arbitrary global unitary. Its probability in the initial typical state is at most that rank times $2^{-n(S(a)-\gamma)}$, since the largest eigenvalue of the memory state is at most one. Adding the input atypical probability gives $o(1)$. The same output projector has target probability $1-o(1)$, again proving trace error tends to one.
+\end{proof}
+
+

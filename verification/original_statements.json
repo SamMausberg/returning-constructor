@@ -1,0 +1,92 @@
+{
+  "thm:entropy": {
+    "kind": "theorem",
+    "title": "Entropy and return",
+    "block": "\\begin{theorem}[Entropy and return]\\label{thm:entropy}\nLet a closed device receive $\\tau^{\\otimes n}$ and have any initial memory state $\\sigma_0$ on $D\\ge2$ dimensions. If $T(\\sigma_n,\\sigma_0)\\le\\delta\\le1/2$, then\n\\begin{equation}\n n-S(\\Omega_n)\n = S(\\sigma_n)-S(\\sigma_0)-I(S_1\\cdots S_n:R)\n \\le\\min\\{m-S(\\sigma_0),\\,\\ha(\\delta)+\\delta\\log_2(D-1)\\}.\n \\label{eq:entropyreturn}\n\\end{equation}\nUnder marginal service with $0\\le\\epsilon\\le1/2$,\n\\begin{equation}\n n[1-\\ha(\\epsilon)]\\le\\ha(\\delta)+\\delta\\log_2(D-1).\n \\label{eq:reverse-marg-lb}\n\\end{equation}\nUnder joint service with $0\\le\\epsilon\\le1/2$, $S(\\Omega_n)$ in~\\eqref{eq:entropyreturn} can be replaced by the upper bound\n\\begin{equation}\n s_{\\rm joint}(n,\\epsilon)=\\ha(\\epsilon)+\\epsilon\\log_2(2^n-1).\n \\label{eq:sjoint}\n\\end{equation}\n\\end{theorem}",
+    "body": "\nLet a closed device receive $\\tau^{\\otimes n}$ and have any initial memory state $\\sigma_0$ on $D\\ge2$ dimensions. If $T(\\sigma_n,\\sigma_0)\\le\\delta\\le1/2$, then\n\\begin{equation}\n n-S(\\Omega_n)\n = S(\\sigma_n)-S(\\sigma_0)-I(S_1\\cdots S_n:R)\n \\le\\min\\{m-S(\\sigma_0),\\,\\ha(\\delta)+\\delta\\log_2(D-1)\\}.\n \\label{eq:entropyreturn}\n\\end{equation}\nUnder marginal service with $0\\le\\epsilon\\le1/2$,\n\\begin{equation}\n n[1-\\ha(\\epsilon)]\\le\\ha(\\delta)+\\delta\\log_2(D-1).\n \\label{eq:reverse-marg-lb}\n\\end{equation}\nUnder joint service with $0\\le\\epsilon\\le1/2$, $S(\\Omega_n)$ in~\\eqref{eq:entropyreturn} can be replaced by the upper bound\n\\begin{equation}\n s_{\\rm joint}(n,\\epsilon)=\\ha(\\epsilon)+\\epsilon\\log_2(2^n-1).\n \\label{eq:sjoint}\n\\end{equation}\n"
+  },
+  "cor:exactreturn": {
+    "kind": "corollary",
+    "title": "Exact return",
+    "block": "\\begin{corollary}[Exact return]\\label{cor:exactreturn}\nIf $\\sigma_n=\\sigma_0$, then $\\Omega_n=\\tau^{\\otimes n}$ and the final output--memory mutual information is zero. No closed device can purify maximally mixed inputs while returning its memory exactly, for any initial memory state.\n\\end{corollary}",
+    "body": "\nIf $\\sigma_n=\\sigma_0$, then $\\Omega_n=\\tau^{\\otimes n}$ and the final output--memory mutual information is zero. No closed device can purify maximally mixed inputs while returning its memory exactly, for any initial memory state.\n"
+  },
+  "thm:dyadic": {
+    "kind": "theorem",
+    "title": "Prefix-controlled erasure",
+    "block": "\\begin{theorem}[Prefix-controlled erasure]\\label{thm:dyadic}\nLet $n\\ge1$, $m\\ge2n$, and $k=m-n$. There is an $m$-qubit initializer and one fixed cyclic-swap unitary whose first $n$ outputs are exactly $p^{\\otimes n}$ and for which\n\\begin{equation}\n T(\\sigma_t,\\sigma_0)=\\frac{t}{m-n+2},\\qquad 1\\le t\\le n.\n \\label{eq:dyadicreturn}\n\\end{equation}\nIn particular, for $0<\\delta\\le1/4$,\n\\begin{equation}\n \\frac{n-\\ha(\\delta)}{\\delta}\n \\le m_-^{\\rm ret}(n,0,\\delta)\n \\le \\left\\lceil\\frac n\\delta\\right\\rceil+n-2.\n \\label{eq:erasurecost}\n\\end{equation}\nBoth marginal and joint output contracts have this exact-output cost bound.\n\\end{theorem}",
+    "body": "\nLet $n\\ge1$, $m\\ge2n$, and $k=m-n$. There is an $m$-qubit initializer and one fixed cyclic-swap unitary whose first $n$ outputs are exactly $p^{\\otimes n}$ and for which\n\\begin{equation}\n T(\\sigma_t,\\sigma_0)=\\frac{t}{m-n+2},\\qquad 1\\le t\\le n.\n \\label{eq:dyadicreturn}\n\\end{equation}\nIn particular, for $0<\\delta\\le1/4$,\n\\begin{equation}\n \\frac{n-\\ha(\\delta)}{\\delta}\n \\le m_-^{\\rm ret}(n,0,\\delta)\n \\le \\left\\lceil\\frac n\\delta\\right\\rceil+n-2.\n \\label{eq:erasurecost}\n\\end{equation}\nBoth marginal and joint output contracts have this exact-output cost bound.\n"
+  },
+  "thm:forwardoptimal": {
+    "kind": "theorem",
+    "title": "Optimal forward memory",
+    "block": "\\begin{theorem}[Optimal forward memory]\\label{thm:forwardoptimal}\nWith arbitrary mixed initialization, the least joint trace error obtainable from $n$ pure inputs and $m$ memory qubits is\n\\begin{equation}\n E_+^*(n,m)=\\max\\{0,1-2^{2m-n}\\}.\n \\label{eq:forwarderror}\n\\end{equation}\nA fixed sequential unitary attains this error and returns the memory exactly at every prefix. Exact joint service therefore needs $\\lceil n/2\\rceil$ memory qubits. Exact marginal service needs only one memory qubit and can continue indefinitely.\n\\end{theorem}",
+    "body": "\nWith arbitrary mixed initialization, the least joint trace error obtainable from $n$ pure inputs and $m$ memory qubits is\n\\begin{equation}\n E_+^*(n,m)=\\max\\{0,1-2^{2m-n}\\}.\n \\label{eq:forwarderror}\n\\end{equation}\nA fixed sequential unitary attains this error and returns the memory exactly at every prefix. Exact joint service therefore needs $\\lceil n/2\\rceil$ memory qubits. Exact marginal service needs only one memory qubit and can continue indefinitely.\n"
+  },
+  "thm:moments": {
+    "kind": "theorem",
+    "title": "One-use purity and trace bounds",
+    "block": "\\begin{theorem}[One-use purity and trace bounds]\\label{thm:moments}\nFor forward homogenization, define $A_M=2^M\\sigma_{M,1}-I$ and let $\\langle X\\rangle=2^{-M}\\Tr X$. Then $A_M$ is a Hermitian contraction and\n\\begin{align}\n a_M:=\\langle A_M^2\\rangle&=1-(1-u^2)^M,\\label{eq:purity}\\\\\n \\langle A_M^4\\rangle&\\le(3M^2+M)u^4.\\label{eq:fourth}\n\\end{align}\nWriting $d_1=T(\\sigma_{M,1},\\tau^{\\otimes M})$, one has\n\\begin{equation}\n \\frac{a_M}{2}\\le d_1\\le\\frac{\\sqrt{a_M}}2\\le\\frac{u\\sqrt M}{2}.\n \\label{eq:basicreturn}\n\\end{equation}\nIf $d_1\\le1/4$, then also\n\\begin{equation}\n d_1\\ge\\frac{u\\sqrt M}{8\\sqrt2},\\qquad Mu^2\\le128d_1^2.\n \\label{eq:returnlower}\n\\end{equation}\n\\end{theorem}",
+    "body": "\nFor forward homogenization, define $A_M=2^M\\sigma_{M,1}-I$ and let $\\langle X\\rangle=2^{-M}\\Tr X$. Then $A_M$ is a Hermitian contraction and\n\\begin{align}\n a_M:=\\langle A_M^2\\rangle&=1-(1-u^2)^M,\\label{eq:purity}\\\\\n \\langle A_M^4\\rangle&\\le(3M^2+M)u^4.\\label{eq:fourth}\n\\end{align}\nWriting $d_1=T(\\sigma_{M,1},\\tau^{\\otimes M})$, one has\n\\begin{equation}\n \\frac{a_M}{2}\\le d_1\\le\\frac{\\sqrt{a_M}}2\\le\\frac{u\\sqrt M}{2}.\n \\label{eq:basicreturn}\n\\end{equation}\nIf $d_1\\le1/4$, then also\n\\begin{equation}\n d_1\\ge\\frac{u\\sqrt M}{8\\sqrt2},\\qquad Mu^2\\le128d_1^2.\n \\label{eq:returnlower}\n\\end{equation}\n"
+  },
+  "cor:singlecost": {
+    "kind": "corollary",
+    "title": "Sharp single-use size",
+    "block": "\\begin{corollary}[Sharp single-use size]\\label{cor:singlecost}\nFor $0<\\epsilon\\le1/4$ and $0<\\delta\\le1/4$, put $\\ell=\\ln[1/(2\\epsilon)]$. The minimum reservoir size for one forward output at trace error $\\epsilon$ and whole-reservoir return error $\\delta$, optimised over coupling, satisfies\n\\begin{equation}\n \\frac{\\ell^2}{512\\delta^2}\n \\le M_+(1,\\epsilon,\\delta)\n \\le \\left\\lceil\\max\\left\\{2\\ell,\\frac{\\ell^2}{4\\delta^2}\\right\\}\\right\\rceil.\n \\label{eq:singlecost}\n\\end{equation}\nIn particular, it is $\\Theta(\\log^2(1/\\epsilon)/\\delta^2)$ in the small-error regime.\n\\end{corollary}",
+    "body": "\nFor $0<\\epsilon\\le1/4$ and $0<\\delta\\le1/4$, put $\\ell=\\ln[1/(2\\epsilon)]$. The minimum reservoir size for one forward output at trace error $\\epsilon$ and whole-reservoir return error $\\delta$, optimised over coupling, satisfies\n\\begin{equation}\n \\frac{\\ell^2}{512\\delta^2}\n \\le M_+(1,\\epsilon,\\delta)\n \\le \\left\\lceil\\max\\left\\{2\\ell,\\frac{\\ell^2}{4\\delta^2}\\right\\}\\right\\rceil.\n \\label{eq:singlecost}\n\\end{equation}\nIn particular, it is $\\Theta(\\log^2(1/\\epsilon)/\\delta^2)$ in the small-error regime.\n"
+  },
+  "thm:transport": {
+    "kind": "theorem",
+    "title": "Excitation transport and return",
+    "block": "\\begin{theorem}[Excitation transport and return]\\label{thm:transport}\nConsider any excitation-conserving closed unitary on $n$ pure-zero inputs and a reservoir initially in $\\tau^{\\otimes M}$. Suppose its output marginals have trace error at most $\\epsilon<1/2$ from $\\tau$, and its final reservoir return error is at most $\\delta>0$. Let $b=1/2-\\epsilon$. Then\n\\begin{equation}\n M\\ge\n \\frac{\\positive{bn/(2\\delta)-n-2}^{\\,2}}{2\\ln(4/b)}.\n \\label{eq:transport}\n\\end{equation}\nFor fixed $\\epsilon<1/2$ and sufficiently small $\\delta$, this is $\\Omega_\\epsilon(n^2/\\delta^2)$ as $n$ grows. It needs only endpoint return and no output independence.\n\\end{theorem}",
+    "body": "\nConsider any excitation-conserving closed unitary on $n$ pure-zero inputs and a reservoir initially in $\\tau^{\\otimes M}$. Suppose its output marginals have trace error at most $\\epsilon<1/2$ from $\\tau$, and its final reservoir return error is at most $\\delta>0$. Let $b=1/2-\\epsilon$. Then\n\\begin{equation}\n M\\ge\n \\frac{\\positive{bn/(2\\delta)-n-2}^{\\,2}}{2\\ln(4/b)}.\n \\label{eq:transport}\n\\end{equation}\nFor fixed $\\epsilon<1/2$ and sufficiently small $\\delta$, this is $\\Omega_\\epsilon(n^2/\\delta^2)$ as $n$ grows. It needs only endpoint return and no output independence.\n"
+  },
+  "lem:collective": {
+    "kind": "lemma",
+    "title": "Marginal relaxation in weak coupling",
+    "block": "\\begin{lemma}[Marginal relaxation in weak coupling]\\label{lem:collective}\nIf $0<\\eta\\le3/(8n^3)$, then\n\\begin{equation}\n \\max_{j\\le n}T(\\rho_{M,j},\\tau)\n \\le\\tfrac34\\exp(-M\\eta^2/2).\n \\label{eq:collectiveupper}\n\\end{equation}\n\\end{lemma}",
+    "body": "\nIf $0<\\eta\\le3/(8n^3)$, then\n\\begin{equation}\n \\max_{j\\le n}T(\\rho_{M,j},\\tau)\n \\le\\tfrac34\\exp(-M\\eta^2/2).\n \\label{eq:collectiveupper}\n\\end{equation}\n"
+  },
+  "thm:manyupper": {
+    "kind": "theorem",
+    "title": "Many-use upper bounds",
+    "block": "\\begin{theorem}[Many-use upper bounds]\\label{thm:manyupper}\nLet $0<\\epsilon,\\delta\\le1/4$, $L_0=\\ln(1/\\epsilon)$, $L=\\ln(2/\\epsilon)$, and $r=\\min\\{\\delta,\\epsilon/2\\}$. Either of the following independent designs gives all marginal output errors at most $\\epsilon$ and every prefix return error at most $\\delta$:\n\\begin{align}\n M&\\ge\\max\\{2L_0,n^2L_0^2/(4r^2)\\},\n &\\sin^2\\eta&=L_0/M;\\label{eq:designold}\\\\\n M&\\ge\\max\\{16n^6L,n^2L^2/\\delta^2\\},\n &\\eta^2&=2L/M.\\label{eq:designnew}\n\\end{align}\nThe better of these two bounds may be used, after rounding $M$ upward.\n\\end{theorem}",
+    "body": "\nLet $0<\\epsilon,\\delta\\le1/4$, $L_0=\\ln(1/\\epsilon)$, $L=\\ln(2/\\epsilon)$, and $r=\\min\\{\\delta,\\epsilon/2\\}$. Either of the following independent designs gives all marginal output errors at most $\\epsilon$ and every prefix return error at most $\\delta$:\n\\begin{align}\n M&\\ge\\max\\{2L_0,n^2L_0^2/(4r^2)\\},\n &\\sin^2\\eta&=L_0/M;\\label{eq:designold}\\\\\n M&\\ge\\max\\{16n^6L,n^2L^2/\\delta^2\\},\n &\\eta^2&=2L/M.\\label{eq:designnew}\n\\end{align}\nThe better of these two bounds may be used, after rounding $M$ upward.\n"
+  },
+  "thm:singlet": {
+    "kind": "theorem",
+    "title": "Singlet test",
+    "block": "\\begin{theorem}[Singlet test]\\label{thm:singlet}\nFor two forward outputs, let $P_-=(I-\\SW_{12})/2$. Then\n\\begin{equation}\n \\Tr(P_-\\Omega_{M,2})=\\frac{1-(1-u^2)^M}{4}=\\frac{a_M}{4}.\n \\label{eq:singlet}\n\\end{equation}\nIf $n\\ge2$, joint output error is at most $\\epsilon$, and prefix return error is at most $\\delta$, then\n\\begin{equation}\n \\epsilon+\\delta/2\\ge1/4.\n \\label{eq:jointobstruction}\n\\end{equation}\n\\end{theorem}",
+    "body": "\nFor two forward outputs, let $P_-=(I-\\SW_{12})/2$. Then\n\\begin{equation}\n \\Tr(P_-\\Omega_{M,2})=\\frac{1-(1-u^2)^M}{4}=\\frac{a_M}{4}.\n \\label{eq:singlet}\n\\end{equation}\nIf $n\\ge2$, joint output error is at most $\\epsilon$, and prefix return error is at most $\\delta$, then\n\\begin{equation}\n \\epsilon+\\delta/2\\ge1/4.\n \\label{eq:jointobstruction}\n\\end{equation}\n"
+  },
+  "prop:spectralreturn": {
+    "kind": "proposition",
+    "title": "Spectral endpoint converse",
+    "block": "\\begin{proposition}[Spectral endpoint converse]\\label{prop:spectralreturn}\nAny closed $m$-qubit memory that exactly purifies $n$ maximally mixed inputs and returns within $\\delta>0$ satisfies\n\\begin{equation}\n \\delta\\ge\\frac1{\\lceil m/n\\rceil+1/(2^n-1)}.\n \\label{eq:spectralreturn}\n\\end{equation}\nConsequently, for the prefix-return optimum,\n\\begin{equation}\n m_-^{\\rm ret}(n,0,\\delta)\\ge\n n\\left(\\left\\lceil\\frac1\\delta-\\frac1{2^n-1}\\right\\rceil-1\\right)+1.\n \\label{eq:spectralmemory}\n\\end{equation}\nTogether with~\\eqref{eq:erasurecost}, this proves $m_-^{\\rm ret}(n,0,\\delta)=n/\\delta+O(n)$ with constants uniform for $0<\\delta\\le1/4$. Within this tolerance range, for $n=1$ the exact optimum is $\\lceil1/\\delta\\rceil-1$.\n\\end{proposition}",
+    "body": "\nAny closed $m$-qubit memory that exactly purifies $n$ maximally mixed inputs and returns within $\\delta>0$ satisfies\n\\begin{equation}\n \\delta\\ge\\frac1{\\lceil m/n\\rceil+1/(2^n-1)}.\n \\label{eq:spectralreturn}\n\\end{equation}\nConsequently, for the prefix-return optimum,\n\\begin{equation}\n m_-^{\\rm ret}(n,0,\\delta)\\ge\n n\\left(\\left\\lceil\\frac1\\delta-\\frac1{2^n-1}\\right\\rceil-1\\right)+1.\n \\label{eq:spectralmemory}\n\\end{equation}\nTogether with~\\eqref{eq:erasurecost}, this proves $m_-^{\\rm ret}(n,0,\\delta)=n/\\delta+O(n)$ with constants uniform for $0<\\delta\\le1/4$. Within this tolerance range, for $n=1$ the exact optimum is $\\lceil1/\\delta\\rceil-1$.\n"
+  },
+  "lem:relaxation": {
+    "kind": "lemma",
+    "title": "Exact finite-block relaxation",
+    "block": "\\begin{lemma}[Exact finite-block relaxation]\\label{lem:relaxation}\nFor every finite $k$, qubit state $b$, and $0<\\eta\\le\\pi/2$,\n\\begin{equation}\n \\Phi_{b,k}^{\\,L}(X)\\longrightarrow b^{\\otimes k}\\Tr X\n \\label{eq:relaxation}\n\\end{equation}\nuniformly on bounded sets of operators. In particular, convergence is uniform over density matrices.\n\\end{lemma}",
+    "body": "\nFor every finite $k$, qubit state $b$, and $0<\\eta\\le\\pi/2$,\n\\begin{equation}\n \\Phi_{b,k}^{\\,L}(X)\\longrightarrow b^{\\otimes k}\\Tr X\n \\label{eq:relaxation}\n\\end{equation}\nuniformly on bounded sets of operators. In particular, convergence is uniform over density matrices.\n"
+  },
+  "thm:limits": {
+    "kind": "theorem",
+    "title": "Exact iterated limits",
+    "block": "\\begin{theorem}[Exact iterated limits]\\label{thm:limits}\nLet $0<F(a,b)=f<1$ and fix $0<\\eta\\le\\pi/2$. Then the ratio in~\\eqref{eq:ratiodef} obeys~\\eqref{eq:limitsmain}, and\n\\begin{equation}\n \\lim_{n\\to\\infty}\\lim_{M\\to\\infty}R_{M,n}=0,\n \\qquad\n \\lim_{M\\to\\infty}\\lim_{n\\to\\infty}R_{M,n}=+\\infty.\n \\label{eq:iterated}\n\\end{equation}\n\\end{theorem}",
+    "body": "\nLet $0<F(a,b)=f<1$ and fix $0<\\eta\\le\\pi/2$. Then the ratio in~\\eqref{eq:ratiodef} obeys~\\eqref{eq:limitsmain}, and\n\\begin{equation}\n \\lim_{n\\to\\infty}\\lim_{M\\to\\infty}R_{M,n}=0,\n \\qquad\n \\lim_{M\\to\\infty}\\lim_{n\\to\\infty}R_{M,n}=+\\infty.\n \\label{eq:iterated}\n\\end{equation}\n"
+  },
+  "prop:capable": {
+    "kind": "proposition",
+    "title": "Product initializer",
+    "block": "\\begin{proposition}[Product initializer]\\label{prop:capable}\nFor every strict partial swap and $M\\ge2$, there is a product state $\\omega\\in V_{e_M}$ with $F(\\omega,p^{\\otimes M})=0$. Hence $S_{e_M}(n)\\to0$ and $e_M/S_{e_M}(n)\\to+\\infty$.\n\\end{proposition}",
+    "body": "\nFor every strict partial swap and $M\\ge2$, there is a product state $\\omega\\in V_{e_M}$ with $F(\\omega,p^{\\otimes M})=0$. Hence $S_{e_M}(n)\\to0$ and $e_M/S_{e_M}(n)\\to+\\infty$.\n"
+  },
+  "prop:entropy-density": {
+    "kind": "proposition",
+    "title": "Different entropy densities",
+    "block": "\\begin{proposition}[Different entropy densities]\\label{prop:entropy-density}\nFor any finite-dimensional one-site states $a,b$ with $S(a)\\ne S(b)$, any fixed finite memory dimension $D$, and any initial memory state independent of $a^{\\otimes n}$, the joint trace error from $b^{\\otimes n}$ tends to one as $n\\to\\infty$. The conclusion even allows an arbitrary global unitary at each horizon.\n\\end{proposition}",
+    "body": "\nFor any finite-dimensional one-site states $a,b$ with $S(a)\\ne S(b)$, any fixed finite memory dimension $D$, and any initial memory state independent of $a^{\\otimes n}$, the joint trace error from $b^{\\otimes n}$ tends to one as $n\\to\\infty$. The conclusion even allows an arbitrary global unitary at each horizon.\n"
+  }
+}

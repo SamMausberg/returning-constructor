@@ -1,0 +1,74 @@
+\section{Closed-memory proofs}\label{app:general}
+\subsection{Entropy balance and pure initial memory}
+\begin{proof}[Proof of \Cref{thm:entropy}]
+The initial joint entropy is $n+S(\sigma_0)$ and is unchanged by the global unitary. Expanding mutual information gives the equality in~\eqref{eq:entropyreturn}. Nonnegativity of mutual information and $S(\sigma_n)\le m$ give its first bound. Audenaert's sharp continuity inequality~\cite{audenaert} gives the second.
+
+A qubit within $\epsilon\le1/2$ of $p$ has entropy at most $\ha(\epsilon)$: its expectation of $p$ is at least $1-\epsilon$, hence its largest eigenvalue is at least that value. Subadditivity proves $S(\Omega_n)\le n\ha(\epsilon)$. For joint error, entropy continuity relative to the pure state $p^{\otimes n}$ gives~\eqref{eq:sjoint}.
+\end{proof}
+\begin{proof}[Proof of \Cref{cor:exactreturn}]
+The equality in~\eqref{eq:entropyreturn} becomes $n-S(\Omega_n)=-I\le0$. Since $S(\Omega_n)\le n$, both sides vanish. The maximally mixed state is the unique state of entropy $n$. With no memory ($D=1$), the same conclusion follows directly from the unitary invariance of $\tau^{\otimes n}$.
+\end{proof}
+
+To prove Eq.~\eqref{eq:pure-return}, let the initial memory be $\ket\psi\bra\psi$. The initial global largest eigenvalue is $2^{-n}$. The rank-one projector $p^{\otimes n}\otimes\ket\psi\bra\psi$ therefore has probability at most $2^{-n}$ after any unitary. Splitting the memory-return event according to whether all outputs are zero gives
+\begin{equation}
+ F(\sigma_n,\sigma_0)\le2^{-n}+1-\bra{0^n}\Omega_n\ket{0^n}.
+\end{equation}
+Under joint accuracy the second term is at most $\epsilon$ by the variational characterization of trace distance. Under marginal accuracy a union bound for commuting output projectors gives at most $n\epsilon$. Measuring $\ket\psi\bra\psi$ on the memory gives $T(\sigma_n,\sigma_0)\ge1-F(\sigma_n,\sigma_0)$ and hence the stated one-use restriction.
+
+For the reverse homogenizer, the incoming excited branch has amplitude $q^{M/2}$ to remain on the output. Its remaining amplitude occupies a one-excitation reservoir vector orthogonal to the vacuum. Tracing out the system therefore gives the exact one-use trace changes in Eq.~\eqref{eq:reverse-first}.
+
+\subsection{Independent randomization}
+\begin{proof}[Proof of \Cref{thm:forwardoptimal}]
+If the initial memory has rank $r_0$, the total output--memory rank is $r_0$ and the output rank is at most $Dr_0\le D^2$. A measurement onto the output support distinguishes it from $\tau^{\otimes n}$ with advantage at least $1-D^2/2^n$.
+
+For $m=0$, leaving the inputs pure attains the stated error. For $m\ge1$, initialize $m$ cells in $\tau^{\otimes m}$. At each visit apply a Hadamard to the input, a CNOT from input to the leading memory bit, a Hadamard to that memory bit, and a cyclic memory rotation. On one memory cell, its first two visits encode the two independent Pauli labels. More generally, conditional on an output bit string $x$, let $V_x$ be the resulting memory word. The output matrix is
+\begin{equation}
+ (\Omega_n)_{x,y}=2^{-n}D^{-1}\Tr(V_xV_y^\dagger).
+ \label{eq:gram}
+\end{equation}
+Modulo phase, the map from histories to Pauli labels is binary linear of rank $\min(n,2m)$. Each cell contributes one label at its first visit and an independent label at its second; subsequent visits introduce no new labels. Different labels have zero normalized trace overlap. Equal-label blocks have rank one and equal cardinality, so $\Omega_n$ is uniform on a subspace of rank $2^{\min(n,2m)}$. This attains~\eqref{eq:forwarderror}. The induced memory channel is a mixture of unitary conjugations followed by a rotation; it fixes $\tau^{\otimes m}$ exactly.
+
+For marginal service, a fair memory bit controlling a CNOT onto each incoming zero emits the state $\tau$ every time without changing its memory marginal. The joint outputs are instead $\tfrac12\ket{0^n}\bra{0^n}+\tfrac12\ket{1^n}\bra{1^n}$. Zero memory cannot randomise a pure qubit by a unitary, proving the one-qubit minimum for errors below $1/2$.
+\end{proof}
+
+\subsection{Dyadic initialization and prefix return}
+\begin{proof}[Proof of \Cref{thm:dyadic}]
+Index computational basis states by $i=1,\ldots,2^m$ and set $C=2/(k+2)$. Choose the diagonal spectrum
+\begin{equation}
+ p_i=\begin{cases}
+ C,&i=1,\\
+ C\,2^{-\lceil\log_2 i\rceil},&2\le i\le2^k,\\
+ 0,&i>2^k.
+ \end{cases}
+ \label{eq:dyadicspectrum}
+\end{equation}
+Each nontrivial binary shell has mass $C/2$, so the probabilities sum to one. The support has its first $n$ bits zero.
+
+At each visit, swap the incoming qubit with the leading memory bit and rotate that bit to the tail. The first $n$ outputs are pure zeros, independent of the incoming maximally mixed bits. After $t\le n$ visits, the memory probabilities are
+\begin{equation}
+ p_i^{(t)}=2^{-t}p_{\lceil i/2^t\rceil}.
+ \label{eq:dyadicshift}
+\end{equation}
+For $2^t<i\le2^k$, this equals $p_i$. The total loss on $i\le2^t$ is $Ct/2$; the tail gains exactly that mass. Hence the total-variation distance, which here equals trace distance, is $Ct/2=t/(k+2)$.
+
+Choose $m=\lceil n/\delta\rceil+n-2$. For $\delta\le1/4$ this obeys $m\ge2n$, and every prefix return error is at most $\delta$. The lower bound follows from~\eqref{eq:entropyreturn} with zero output entropy and $\log_2(D-1)\le m$.
+\end{proof}
+
+The memory gains exactly $t$ bits of entropy after $t$ uses, because the emitted pure qubits are independent of everything retained. The initial mixedness and the trailing fair bits are both included in the memory count.
+
+\subsection{The spectral converse}
+\begin{proof}[Proof of \Cref{prop:spectralreturn}]
+Rank conservation first requires $m\ge n$. Put $d=2^n$ and $a=\lceil m/n\rceil$. Pad the memory with pure unused qubits to dimension $d^a$, without changing return distance. Let its ordered initial eigenvalues be $\lambda_i$. Pure joint outputs force the final state to be a product with the memory. Unitary spectrum preservation therefore makes the final memory eigenvalues $\mu_i=\lambda_{\lceil i/d\rceil}/d$, and requires the initial rank to be at most $d^{a-1}$.
+
+Set $F_k=\sum_{i\le d^k}\lambda_i$. Trace distance bounds the difference between the sums of the largest $r$ eigenvalues of two states: use the projector onto the first state's leading $r$ eigenvectors, and the variational maximum for the second. At $r=1$ this gives $(1-1/d)F_0\le\delta$. At $r=d^k$, $1\le k\le a-1$, it gives $F_k-F_{k-1}\le\delta$. Since $F_{a-1}=1$, summing yields
+\begin{equation}
+ 1\le\delta\frac d{d-1}+(a-1)\delta
+   =\delta\left(a+\frac1{d-1}\right).
+\end{equation}
+This proves~\eqref{eq:spectralreturn}, including $a=1$ when the sum is empty. Integer rounding gives~\eqref{eq:spectralmemory}. Its lower bound is at least $n/\delta-n-n/(2^n-1)+1$, while the cyclic construction uses at most $n/\delta+n-1$. At $n=1$, the rounded lower and upper bounds agree.
+\end{proof}
+
+\subsection{Endpoint initialization and approximate outputs}
+An endpoint-optimal spectrum can have a larger intermediate return error. For example, the endpoint catalyst of Ref.~\cite{ng} at $n=2$, $m=6$ has return distances $2/5$ and $3/10$ after its first and second visits under the cyclic implementation. The dyadic initializer controls every prefix instead. The exact finite calculation is included in the verification record.
+
+For approximate reverse outputs, take a retained classical flag independent of the inputs. In one branch, of probability $w$, run the exact dyadic device. In the other, pass each input through unchanged. The two memory branches have orthogonal flag support, so their trace changes add with weights, while the pass-through branch has zero change. Joint output error is $(1-w)(1-2^{-n})\le1-w$, and marginal output error is $(1-w)/2$. Choosing $w=1-\epsilon$ or $w=1-2\epsilon$, respectively, proves Eq.~\eqref{eq:flagupper}, including the counted flag qubit. The lower bounds follow from Eqs.~\eqref{eq:entropyreturn} and~\eqref{eq:sjoint}. Taking the limits in the stated order gives the joint coefficient in Eq.~\eqref{eq:jointapproxrate}; the same comparison bounds the marginal coefficient between $1-\ha(\epsilon)$ and $1-2\epsilon$.

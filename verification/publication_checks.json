@@ -1,0 +1,29 @@
+{
+  "Memory_return": {
+    "pages": 18,
+    "overfull_boxes": 0,
+    "undefined_reference_warnings": 0,
+    "multiply_defined_warnings": 0,
+    "sha256": "cb5b2fe1057c58e3ddb2bf07760456804e5ce53bcd1595c4a37dfc0ec7066398"
+  },
+  "Comment_PRL": {
+    "pages": 1,
+    "overfull_boxes": 0,
+    "undefined_reference_warnings": 0,
+    "multiply_defined_warnings": 0,
+    "sha256": "a7905f126d1518b44db38f97db98767da0a02308cf5bf2bd56657b99d600d0b2"
+  },
+  "Referee_packet": {
+    "pages": 10,
+    "overfull_boxes": 0,
+    "undefined_reference_warnings": 0,
+    "multiply_defined_warnings": 0,
+    "sha256": "637c702fbf47afae5b203dfd0f255aa8bb6fa9e9623555c796329c4d82e1b4ea"
+  },
+  "comment_length_estimate": 546.9701499618878,
+  "comment_length_generous_estimate": 704.9701499618878,
+  "comment_length_limit": 750,
+  "statement_math_token_matches": 15,
+  "regression_record_identical_to_supplied": true,
+  "visual_inspection": "Every page of the three committed PDFs was rendered and inspected on 2026-10-02."
+}

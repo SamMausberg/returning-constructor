@@ -1,0 +1,11 @@
+\section{The two-output singlet identity}\label{app:singlet}
+\begin{proof}[Proof of \Cref{thm:singlet}]
+The two-cell column channel obeys the exact adjoint identity
+\begin{equation}
+ \Phi_{\tau,2}^{\dagger}(P_-)=\tfrac14u^2 I+(1-u^2)P_-.
+ \label{eq:singletadjoint}
+\end{equation}
+For a direct derivation, collective rotational covariance makes the left side a linear combination of $I$ and $P_-$. Its expectation on $p^{\otimes2}$ is $u^2/4$, by applying the two partial swaps to a fresh $\tau$ ancilla. Its expectation on $\tau^{\otimes2}$ is $1/4$, because that state is fixed. These two values determine~\eqref{eq:singletadjoint}. Iterating from zero initial singlet population gives~\eqref{eq:singlet}.
+
+The maximally mixed two-qubit target has singlet probability $1/4$. Therefore joint trace error is at least $1/4-a_M/4$. First-prefix return implies $a_M/2\le\delta$ by~\eqref{eq:basicreturn}, proving~\eqref{eq:jointobstruction}. For longer horizons, trace out all but the first two outputs.
+\end{proof}
