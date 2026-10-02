@@ -18,7 +18,7 @@ The full abstract is in [`pdf/Memory_return.pdf`](pdf/Memory_return.pdf).
 | [`source/`](source/) | LaTeX sources: `paper.tex`, `comment.tex`, theorem statements (`statements/`), full proofs (`appendices/`), TikZ diagrams and generated plots (`figures/`), and `references.bib` |
 | [`code/`](code/) | Python: research checks (`return_checks.py`, `exact_homogenizer.py`, `extended_checks.py`), certified figure data (`certified_figures.py`), plots (`make_plots.py`), and the editorial audit (`editorial_audit.py`) |
 | [`data/`](data/) | Certified figure data: rational interval endpoints (JSON) and decimal plotting coordinates (CSV) |
-| [`lean/`](lean/) | Lean 4 + Mathlib proof that disjoint-gate exchange certificates are sound |
+| [`lean/`](lean/) | Lean 4 + Mathlib proofs: soundness of disjoint-gate exchange certificates, and the first-use step of the capable-state counterexample (Proposition 14) |
 | [`verification/`](verification/) | Machine-readable records of the checks, figure certificates, the statement-preservation audits, and the Lean build |
 | [`scripts/`](scripts/) | Build helpers that generate the statement-only packet and audit the theorem statements |
 
